@@ -8,3 +8,7 @@ export 'package:elden_build/layout/pages/onboarding.dart';
 export 'package:elden_build/layout/pages/profile.dart';
 export 'package:elden_build/layout/pages/splash_screen.dart';
 export 'package:elden_build/layout/pages/not_found.dart';
+
+//Partials
+
+export 'package:elden_build/layout/partials/onboarding/get_started_button.dart';

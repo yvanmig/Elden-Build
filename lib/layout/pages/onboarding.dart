@@ -55,7 +55,7 @@ class Onboarding extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: const [
                         Center(
-                          child: Text('You can also add your creations and share theme',
+                          child: Text('You can also add your creations and share them',
                               style: TextStyle(color: Colors.white)),
                         ),
                         Center(
@@ -70,24 +70,11 @@ class Onboarding extends StatelessWidget {
                     Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        const Text('Finally, you can vote and register your favorite builds',
+                      children: const [
+                        Text('Finally, you can vote and register your favorite builds',
                               style: TextStyle(color: Colors.white)
                         ),
-                        OutlinedButton(
-                          style: OutlinedButton.styleFrom(
-                            shape: const StadiumBorder(),
-                            side: const BorderSide(
-                                width: 2,
-                                color: Colors.white
-                            ),
-                          ),
-                          onPressed: () {
-                            Navigator.pushNamed(context, '/login');
-                          },
-                          child: const Text('Get Started',
-                              style: TextStyle(color: Colors.white)),
-                        )
+                        GetStartedButton(buttonText: 'Get Started', route: '/login')
                       ],
                     )
                   ]
