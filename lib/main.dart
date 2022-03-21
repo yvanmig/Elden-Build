@@ -15,20 +15,21 @@ class MyApp extends StatelessWidget {
       title: 'Elden Build',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        fontFamily: 'Mantinia'
       ),
       routes: {
-        BuildPage.routeName : (context)=> BuildPage(),
-        ListBuild.routeName : (context) => ListBuild(),
-        Login.routeName : (context) => Login(),
-        Onboarding.routeName : (context) => Onboarding(),
-        Profile.routeName : (context) => Profile(),
-        Register.routeName : (context) => Register(),
-        SplashScreen.routeName : (context) => SplashScreen(),
-        BuildPage.routeName : (context) => BuildPage(),
+        BuildPage.routeName : (context)=> const BuildPage(),
+        ListBuild.routeName : (context) => const ListBuild(),
+        Login.routeName : (context) => const Login(),
+        Onboarding.routeName : (context) => const Onboarding(),
+        Profile.routeName : (context) => const Profile(),
+        Register.routeName : (context) => const Register(),
+        SplashScreen.routeName : (context) => const SplashScreen(),
+        BuildPage.routeName : (context) => const BuildPage(),
       },
       initialRoute: Login.routeName,
       onUnknownRoute: (settings) {
-        return MaterialPageRoute(builder: (context) => NotFound());
+        return MaterialPageRoute(builder: (context) => const NotFound());
       },
       debugShowCheckedModeBanner: false,
     );
