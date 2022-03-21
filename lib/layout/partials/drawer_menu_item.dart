@@ -10,7 +10,7 @@ class DrawerMenuItem extends StatelessWidget {
         required this.itemTitle,
         required this.route,
       }
-      );
+  );
 
   @override
   Widget build(BuildContext context) {
