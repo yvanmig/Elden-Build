@@ -1,4 +1,5 @@
 import 'package:elden_build/layout/layout.dart';
+import 'package:elden_build/layout/pages/create_build.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         BuildPage.routeName : (context)=> const BuildPage(),
+        CreateBuild.routeName : (context)=> const CreateBuild(),
         ListBuild.routeName : (context) => const ListBuild(),
         Login.routeName : (context) => const Login(),
         Onboarding.routeName : (context) => const Onboarding(),

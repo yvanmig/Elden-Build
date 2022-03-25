@@ -14,10 +14,9 @@ class DrawerMenu extends StatelessWidget {
             shrinkWrap: true,
             padding: EdgeInsets.zero,
             children: const [
-              DrawerMenuItem(itemTitle: 'Builds list', route: '/list_build'),
+              DrawerMenuItem(itemTitle: 'Builds list', route: '/list-build'),
+              DrawerMenuItem(itemTitle: 'Create Build', route: '/create-build'),
               DrawerMenuItem(itemTitle: 'Profile', route: '/profile'),
-              DrawerMenuItem(itemTitle: 'New Build', route: 'login'),
-              DrawerMenuItem(itemTitle: 'ITEM V', route: 'login'),
             ],
           ),
         )
