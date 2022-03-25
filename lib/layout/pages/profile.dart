@@ -11,25 +11,11 @@ class Profile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: const Color.fromRGBO(160, 141, 106, 1.0),
-          title: const Center(
-              child: Text('Elden Build')
-          ),
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.person_sharp),
-            tooltip: 'User Profile',
-            onPressed: () {
-              Navigator.pushNamed(context, '/profile');
-              },
-            ),
-          ],
-      ),
+    return  Scaffold(
+      appBar: CustomAppBar(),
       body:
-      const Text('PROFILE'),
-      drawer: const DrawerMenu()
+      Text('PROFILE'),
+      drawer: DrawerMenu()
     );
 
   }

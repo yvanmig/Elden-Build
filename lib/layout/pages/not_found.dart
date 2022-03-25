@@ -11,6 +11,7 @@ class NotFound extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: CustomAppBar(),
       body:
       Text('Error 404 : Not Found'),
     );

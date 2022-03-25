@@ -11,9 +11,16 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:
-      Text('SPLASH SCREEN'),
-    );
+      backgroundColor: Colors.black,
+      body:Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: NetworkImage("img/logo_large.png"),
+            fit: BoxFit.scaleDown,
+          ),
+        ),
+      ),
+      );
 
   }
 }

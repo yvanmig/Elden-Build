@@ -12,3 +12,4 @@ export 'package:elden_build/layout/pages/not_found.dart';
 //Partials
 
 export 'package:elden_build/layout/partials/onboarding/get_started_button.dart';
+export 'package:elden_build/layout/partials/custom_app_bar.dart';

@@ -1,4 +1,3 @@
-
 import 'package:elden_build/layout/partials/drawer_menu_item.dart';
 import 'package:flutter/material.dart';
 
@@ -15,10 +14,9 @@ class DrawerMenu extends StatelessWidget {
             shrinkWrap: true,
             padding: EdgeInsets.zero,
             children: const [
-              DrawerMenuItem(itemTitle: 'Login', route: '/login'),
-              DrawerMenuItem(itemTitle: 'Register', route: '/register'),
+              DrawerMenuItem(itemTitle: 'Builds list', route: '/list_build'),
               DrawerMenuItem(itemTitle: 'Profile', route: '/profile'),
-              DrawerMenuItem(itemTitle: 'ITEM IV', route: 'login'),
+              DrawerMenuItem(itemTitle: 'New Build', route: 'login'),
               DrawerMenuItem(itemTitle: 'ITEM V', route: 'login'),
             ],
           ),
