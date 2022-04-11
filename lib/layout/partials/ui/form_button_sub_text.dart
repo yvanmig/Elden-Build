@@ -20,9 +20,9 @@ class FormButtonSubText extends StatelessWidget {
     return RichText(
       text: TextSpan(
         children: [
-          const TextSpan(
+          TextSpan(
             text: subText,
-            style: TextStyle(color: Colors.white),
+            style: const TextStyle(color: Colors.white),
           ),
           TextSpan(
             text: ' log in',
@@ -34,7 +34,7 @@ class FormButtonSubText extends StatelessWidget {
           ),
         ],
       ),
-    )
+    );
   }
 }
 

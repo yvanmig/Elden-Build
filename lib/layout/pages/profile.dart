@@ -12,11 +12,45 @@ class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      appBar: CustomAppBar(),
+      backgroundColor: Colors.black,
+      appBar: const CustomAppBar(),
+      drawer: const DrawerMenu(),
       body:
-      Text('PROFILE'),
-      drawer: DrawerMenu()
-    );
+        Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+             Container(
+                width: 190.0,
+                height: 190.0,
+                decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                        fit: BoxFit.fill,
+                        image: NetworkImage(
+                            "img/grid4.jpg")
+                    )
+                )),
+                Column(
+                  children : const [
+                    ProfileRow(rowTitle: "Pseudo", rowData: "ChopperFlame"),
+                    ProfileRowDivider(),
 
+                    ProfileRow(rowTitle: "Email", rowData: "ChopperFlame@gmail.com"),
+                    ProfileRowDivider(),
+
+                    ProfileRow(rowTitle: "Pseudo", rowData: "ChopperFlame"),
+                    ProfileRowDivider(),
+
+                    ProfileRow(rowTitle: "Pseudo", rowData: "ChopperFlame"),
+                    ProfileRowDivider(),
+
+                    ProfileRow(rowTitle: "Pseudo", rowData: "ChopperFlame"),
+                    ProfileRowDivider(),
+                  ]
+                )
+              ],
+        )
+    );
   }
 }
