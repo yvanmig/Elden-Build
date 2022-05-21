@@ -16,3 +16,4 @@ export 'package:elden_build/layout/partials/ui/form_button.dart';
 export 'package:elden_build/layout/partials/custom_app_bar.dart';
 export 'package:elden_build/layout/partials/profile/profile_row.dart';
 export 'package:elden_build/layout/partials/profile/profile_row_divider.dart';
+export 'package:elden_build/layout/partials/build/build_card.dart';
