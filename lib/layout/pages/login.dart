@@ -31,7 +31,7 @@ class Login extends StatelessWidget {
                       fontSize: 40
                   )
               ),
-              const Text(
+              Text(
                   'LogiN',
                   style: TextStyle(
                       color: Colors.white,
@@ -41,12 +41,12 @@ class Login extends StatelessWidget {
             ],
           ),
           Column(
-            children: const [
+            children: [
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 75, vertical: 8),
-                child: TextField(
-                  style: TextStyle(color: Colors.white),
-                  decoration: InputDecoration(
+                padding: const EdgeInsets.symmetric(horizontal: 75, vertical: 8),
+                child: TextFormField(
+                  style: const TextStyle(color: Colors.white),
+                  decoration: const InputDecoration(
                     fillColor: Colors.white,
                     filled: true,
                     border: UnderlineInputBorder(),
@@ -55,10 +55,10 @@ class Login extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 75, vertical: 8),
-                child: TextField(
-                  style: TextStyle(color: Colors.white),
-                  decoration: InputDecoration(
+                padding: const EdgeInsets.symmetric(horizontal: 75, vertical: 8),
+                child: TextFormField(
+                  style: const TextStyle(color: Colors.white),
+                  decoration: const InputDecoration(
                     fillColor: Colors.white,
                     filled: true,
                     border: UnderlineInputBorder(),

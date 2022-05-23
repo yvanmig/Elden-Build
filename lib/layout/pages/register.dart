@@ -41,24 +41,24 @@ class Register extends StatelessWidget {
             ],
           ),
           Column(
-            children: const [
+            children: [
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 75, vertical: 8),
-                child: TextField(
-                  style: TextStyle(color: Colors.white),
-                  decoration: InputDecoration(
+                padding: const EdgeInsets.symmetric(horizontal: 75, vertical: 8),
+                child: TextFormField(
+                  style: const TextStyle(color: Colors.white),
+                  decoration: const InputDecoration(
                     fillColor: Colors.white,
                     filled: true,
-                    border: UnderlineInputBorder(),
+                    border: const UnderlineInputBorder(),
                     labelText: 'Email',
                   ),
                 ),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 75, vertical: 8),
-                child: TextField(
-                  style: TextStyle(color: Colors.white),
-                  decoration: InputDecoration(
+                padding: const EdgeInsets.symmetric(horizontal: 75, vertical: 8),
+                child: TextFormField(
+                  style: const TextStyle(color: Colors.white),
+                  decoration: const InputDecoration(
                     fillColor: Colors.white,
                     filled: true,
                     border: UnderlineInputBorder(),
@@ -67,10 +67,10 @@ class Register extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 75, vertical: 8),
-                child: TextField(
-                  style: TextStyle(color: Colors.white),
-                  decoration: InputDecoration(
+                padding: const EdgeInsets.symmetric(horizontal: 75, vertical: 8),
+                child: TextFormField(
+                  style: const TextStyle(color: Colors.white),
+                  decoration: const InputDecoration(
                     fillColor: Colors.white,
                     filled: true,
                     border: UnderlineInputBorder(),
@@ -79,10 +79,10 @@ class Register extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 75, vertical: 8),
-                child: TextField(
-                  style: TextStyle(color: Colors.white),
-                  decoration: InputDecoration(
+                padding: const EdgeInsets.symmetric(horizontal: 75, vertical: 8),
+                child: TextFormField(
+                  style: const TextStyle(color: Colors.white),
+                  decoration: const InputDecoration(
                     fillColor: Colors.white,
                     filled: true,
                     border: UnderlineInputBorder(),
@@ -94,7 +94,7 @@ class Register extends StatelessWidget {
           ),
           Column(
             children: [
-              FormButton(buttonText: "REGISTER", route: "/REGISTER"),
+              const FormButton(buttonText: "REGISTER", route: "/REGISTER"),
               RichText(
                 text: TextSpan(
                   children: [
