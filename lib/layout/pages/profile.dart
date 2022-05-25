@@ -1,56 +1,47 @@
-
 import 'package:elden_build/layout/partials/drawer_menu.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-//import 'package:google_fonts/google_fonts.dart';
 import 'package:elden_build/layout/layout.dart';
+import 'package:elden_build/models/user_provider.dart';
+import 'package:elden_build/models/user_model.dart';
+import 'package:provider/provider.dart';
 
 class Profile extends StatelessWidget {
-  static String routeName = '/profile';
-  const Profile();
+  static const String routeName = '/profile';
+
+  const Profile({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-      backgroundColor: Colors.black,
-      appBar: const CustomAppBar(),
-      drawer: const DrawerMenu(),
-      body:
-        Column(
+    List<User> users = Provider.of<UserProvider>(context).users;
+    return Scaffold(
+        backgroundColor: Colors.black,
+        appBar: const CustomAppBar(),
+        drawer: const DrawerMenu(),
+        body: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-             Container(
-                width: 190.0,
-                height: 190.0,
-                decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                    image: DecorationImage(
-                        fit: BoxFit.fill,
-                        image: NetworkImage(
-                            "img/grid4.jpg")
-                    )
-                )),
-                Column(
-                  children : const [
-                    ProfileRow(rowTitle: "Pseudo", rowData: "ChopperFlame"),
-                    ProfileRowDivider(),
-
-                    ProfileRow(rowTitle: "Email", rowData: "ChopperFlame@gmail.com"),
-                    ProfileRowDivider(),
-
-                    ProfileRow(rowTitle: "Pseudo", rowData: "ChopperFlame"),
-                    ProfileRowDivider(),
-
-                    ProfileRow(rowTitle: "Pseudo", rowData: "ChopperFlame"),
-                    ProfileRowDivider(),
-
-                    ProfileRow(rowTitle: "Pseudo", rowData: "ChopperFlame"),
-                    ProfileRowDivider(),
-                  ]
-                )
-              ],
-        )
-    );
+            Column(
+                children: users.map((user) {
+              return Container(
+                  child: Column(children: [
+                Container(
+                    width: 190.0,
+                    height: 190.0,
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        image: DecorationImage(
+                            fit: BoxFit.fill,
+                            image: NetworkImage("img/${user.photo}")))),
+                Column(children: [
+                  ProfileRow(rowTitle: "Pseudo", rowData: user.pseudo),
+                  ProfileRowDivider(),
+                  ProfileRow(rowTitle: "Email", rowData: user.email),
+                  ProfileRowDivider(),
+                ])
+              ]));
+            }).toList())
+          ],
+        ));
   }
 }

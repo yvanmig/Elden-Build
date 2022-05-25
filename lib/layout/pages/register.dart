@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -6,15 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:elden_build/layout/layout.dart';
 
 class Register extends StatelessWidget {
-  static String routeName = '/register';
+  static const String routeName = '/register';
   const Register();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body:
-      Column(
+      body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -24,26 +22,17 @@ class Register extends StatelessWidget {
                 height: 230,
                 image: NetworkImage('img/logo.png'),
               ),
-              Text(
-                  'Elden rinG',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 40
-                  )
-              ),
-              const Text(
-                  'RegisteR',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 30
-                  )
-              ),
+              Text('Elden rinG',
+                  style: TextStyle(color: Colors.white, fontSize: 40)),
+              const Text('RegisteR',
+                  style: TextStyle(color: Colors.white, fontSize: 30)),
             ],
           ),
           Column(
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 75, vertical: 8),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 75, vertical: 8),
                 child: TextFormField(
                   style: const TextStyle(color: Colors.white),
                   decoration: const InputDecoration(
@@ -55,7 +44,8 @@ class Register extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 75, vertical: 8),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 75, vertical: 8),
                 child: TextFormField(
                   style: const TextStyle(color: Colors.white),
                   decoration: const InputDecoration(
@@ -67,7 +57,8 @@ class Register extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 75, vertical: 8),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 75, vertical: 8),
                 child: TextFormField(
                   style: const TextStyle(color: Colors.white),
                   decoration: const InputDecoration(
@@ -79,7 +70,8 @@ class Register extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 75, vertical: 8),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 75, vertical: 8),
                 child: TextFormField(
                   style: const TextStyle(color: Colors.white),
                   decoration: const InputDecoration(
@@ -118,6 +110,5 @@ class Register extends StatelessWidget {
         ],
       ),
     );
-
   }
 }

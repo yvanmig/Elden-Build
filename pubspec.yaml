@@ -1,5 +1,5 @@
 name: elden_build
-description: A new Flutter project.
+description: An application for Elden Ring.
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -29,6 +29,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  provider: ^6.0.2
+  http: ^0.13.4
+  intl: ^0.17.0
 
 
   # The following adds the Cupertino Icons font to your application.

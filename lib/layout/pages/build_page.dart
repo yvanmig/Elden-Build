@@ -1,4 +1,5 @@
-
+import 'package:elden_build/layout/partials/build/equipment.dart';
+import 'package:elden_build/layout/partials/build/stat.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 //import 'package:google_fonts/google_fonts.dart';
@@ -6,7 +7,8 @@ import 'package:elden_build/layout/layout.dart';
 
 class BuildPage extends StatelessWidget {
   static const String routeName = '/build-page';
-  final String buildDescription = "A build using faith and dexterity to annihilate waves of ennemies. May stagger bosses if combined with a high level talisman";
+  final String buildDescription =
+      "A build using faith and dexterity to annihilate waves of ennemies. May stagger bosses if combined with a high level talisman";
   final String name;
   final int id;
 
@@ -42,135 +44,122 @@ class BuildPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
-      appBar: const CustomAppBar(),
-      body:
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 75, vertical: 8),
-            child:
-            Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  height: 175,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Column(
+        backgroundColor: Colors.black,
+        appBar: const CustomAppBar(),
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 75, vertical: 8),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                height: 175,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children:
-                          stats.map((stat){
-                            return Container(
-                              child: Stat(
-                                  value: stat.value,
-                                  name: stat.name
-                              ),
-                            );
-                          }).toList()
+                        children: stats.map((stat) {
+                          return Container(
+                            child: Stat(value: stat.value, name: stat.name),
+                          );
+                        }).toList()),
+                    // const Padding(padding: const EdgeInsets.only(bottom: 20)),
+                    Align(
+                      widthFactor: 0.7,
+                      alignment: Alignment.center,
+                      child: Container(
+                        height: 150,
+                        padding: const EdgeInsets.all(10),
+                        child: const VerticalDivider(
+                          color: Color.fromRGBO(160, 141, 106, 1.0),
+                          thickness: 2,
+                        ),
                       ),
-                      // const Padding(padding: const EdgeInsets.only(bottom: 20)),
-                Align(
-                  widthFactor: 0.7,
-                  alignment: Alignment.center,
-                  child: Container(
-                    height: 150,
-                    padding: const EdgeInsets.all(10),
-                    child: const VerticalDivider(
-                      color: Color.fromRGBO(160, 141, 106, 1.0),
-                      thickness: 2,
                     ),
-                  ),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 75),
+                        child: Text(buildDescription),
+                      ),
+                    )
+                  ],
                 ),
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 75),
-                          child: Text(buildDescription),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                DefaultTabController(
-                    length: 3, // length of tabs
-                    initialIndex: 0,
-                    child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: <Widget>[
-                      Container(
-                          height: 360, //height of TabBarView
-                          decoration: const BoxDecoration(
-                              border: Border(top: BorderSide(color: Color.fromRGBO(160, 141, 106, 1.0), width: 0.5))
+              ),
+              DefaultTabController(
+                  length: 3, // length of tabs
+                  initialIndex: 0,
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: <Widget>[
+                        Container(
+                            height: 360, //height of TabBarView
+                            decoration: const BoxDecoration(
+                                border: Border(
+                                    top: BorderSide(
+                                        color:
+                                            Color.fromRGBO(160, 141, 106, 1.0),
+                                        width: 0.5))),
+                            child: TabBarView(children: <Widget>[
+                              Container(
+                                  child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: weapons.map((weapon) {
+                                        return Container(
+                                          child: Equipment(
+                                              name: weapon.name,
+                                              image: weapon.image),
+                                        );
+                                      }).toList())),
+                              Container(
+                                child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: spells.map((spell) {
+                                      return Container(
+                                        child: Equipment(
+                                            name: spell.name,
+                                            image: spell.image),
+                                      );
+                                    }).toList()),
+                              ),
+                              Container(
+                                child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: talismans.map((talismans) {
+                                      return Container(
+                                        child: Equipment(
+                                            name: talismans.name,
+                                            image: talismans.image),
+                                      );
+                                    }).toList()),
+                              ),
+                            ])),
+                        Container(
+                          child: TabBar(
+                            tabs: [
+                              Tab(
+                                child: Container(
+                                  child: const Text("Weapon"),
+                                ),
+                              ),
+                              Tab(
+                                child: Container(
+                                  child: const Text("Spells"),
+                                ),
+                              ),
+                              Tab(
+                                child: Container(
+                                  child: const Text("Talismans"),
+                                ),
+                              ),
+                            ],
                           ),
-                          child: TabBarView(children: <Widget>[
-                            Container(
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children:
-                                  weapons.map((weapon){
-                                    return Container(
-                                      child: Equipment(
-                                          name: weapon.name,
-                                          image: weapon.image
-                                      ),
-                                    );
-                                  }).toList()
-                                )
-                              ),
-                            Container(
-                              child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: spells.map((spell){
-                                    return Container(
-                                      child: Equipment(
-                                        name: spell.name,
-                                        image: spell.image
-                                        ),
-                                      );
-                                    }).toList()
-                                ),
-                            ),
-                            Container(
-                              child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: talismans.map((talismans){
-                                    return Container(
-                                      child: Equipment(
-                                        name: talismans.name,
-                                        image: talismans.image
-                                        ),
-                                      );
-                                    }).toList()
-                                ),
-                            ),
-                          ])
-                      ),
-                      Container(
-                        child: TabBar(
-                          tabs: [
-                            Tab(
-                              child: Container(
-                                child: const Text("Weapon"),
-                              ),
-                            ),
-                            Tab(
-                              child: Container(
-                                child: const Text("Spells"),
-                              ),
-                            ),
-                            Tab(
-                              child: Container(
-                                child: const Text("Talismans"),
-                              ),
-                            ),
-                          ],
                         ),
-                      ),
-                    ])
-                ),
-              ],
-            ),
-          )
-    );
-
+                      ])),
+            ],
+          ),
+        ));
   }
 }
