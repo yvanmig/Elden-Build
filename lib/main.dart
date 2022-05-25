@@ -28,16 +28,6 @@ class MyApp extends StatelessWidget {
                   borderSide: BorderSide(color: Color.fromRGBO(160, 141, 106, 1.0)))
           ),
       ),
-/*      routes: {
-        BuildPage.routeName : (context)=> BuildPage(),
-        CreateBuild.routeName : (context)=> const CreateBuild(),
-        ListBuild.routeName : (context) => const ListBuild(),
-        Login.routeName : (context) => const Login(),
-        Onboarding.routeName : (context) => const Onboarding(),
-        Profile.routeName : (context) => const Profile(),
-        Register.routeName : (context) => const Register(),
-        SplashScreen.routeName : (context) => const SplashScreen(),
-      },*/
     onGenerateRoute: (settings) {
       switch(settings.name) {
         case BuildPage.routeName: {
