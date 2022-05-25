@@ -16,10 +16,20 @@ class MyApp extends StatelessWidget {
       title: 'Elden Build',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        fontFamily: 'Mantinia'
+        fontFamily: 'Mantinia',
+        textTheme: const TextTheme(
+          bodyText2: TextStyle(color: Colors.white),
+        ),
+          tabBarTheme: const TabBarTheme(
+              labelColor: Colors.white,
+              unselectedLabelColor: Colors.grey,
+              labelStyle: TextStyle( fontFamily: 'Mantinia'), // color for text
+              indicator: UnderlineTabIndicator( // color for indicator (underline)
+                  borderSide: BorderSide(color: Color.fromRGBO(160, 141, 106, 1.0)))
+          ),
       ),
-      routes: {
-        BuildPage.routeName : (context)=> const BuildPage(),
+/*      routes: {
+        BuildPage.routeName : (context)=> BuildPage(),
         CreateBuild.routeName : (context)=> const CreateBuild(),
         ListBuild.routeName : (context) => const ListBuild(),
         Login.routeName : (context) => const Login(),
@@ -27,8 +37,57 @@ class MyApp extends StatelessWidget {
         Profile.routeName : (context) => const Profile(),
         Register.routeName : (context) => const Register(),
         SplashScreen.routeName : (context) => const SplashScreen(),
-        BuildPage.routeName : (context) => const BuildPage(),
-      },
+      },*/
+    onGenerateRoute: (settings) {
+      switch(settings.name) {
+        case BuildPage.routeName: {
+          final BuildData arguments = settings.arguments as BuildData;
+
+          return MaterialPageRoute(builder: (context) {
+            return BuildPage(
+                name: arguments.name,
+                id: arguments.id
+            );
+          });
+        }
+        case ListBuild.routeName: {
+
+          return MaterialPageRoute(builder: (context) {
+            return ListBuild();
+          });
+        }
+        case CreateBuild.routeName: {
+
+          return MaterialPageRoute(builder: (context) {
+            return CreateBuild();
+          });
+        }
+        case Login.routeName: {
+
+          return MaterialPageRoute(builder: (context) {
+            return Login();
+          });
+        }
+        case Onboarding.routeName: {
+
+          return MaterialPageRoute(builder: (context) {
+            return Onboarding();
+          });
+        }
+        case Profile.routeName: {
+
+          return MaterialPageRoute(builder: (context) {
+            return Profile();
+          });
+        }
+        case Register.routeName: {
+
+          return MaterialPageRoute(builder: (context) {
+            return Register();
+          });
+        }
+      }
+    },
       initialRoute: Login.routeName,
       onUnknownRoute: (settings) {
         return MaterialPageRoute(builder: (context) => const NotFound());
@@ -36,6 +95,13 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
     );
   }
+}
+
+class BuildData {
+  final String name;
+  final int id;
+
+  BuildData({required this.name, required this.id});
 }
 
 
