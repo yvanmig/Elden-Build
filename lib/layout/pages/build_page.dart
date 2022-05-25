@@ -44,21 +44,6 @@ class BuildPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.black,
-        appBar: const CustomAppBar(),
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 75, vertical: 8),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                height: 175,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Column(
       backgroundColor: Colors.black,
       appBar: CustomAppBarBuild(buildName: name),
       body:
