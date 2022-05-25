@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:elden_build/layout/layout.dart';
 
 class Login extends StatelessWidget {
-  static String routeName = '/login';
+  static const String routeName = '/login';
   const Login();
 
   @override

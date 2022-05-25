@@ -43,7 +43,7 @@ class BuildPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      appBar: const CustomAppBar(),
+      appBar: CustomAppBarBuild(buildName: name),
       body:
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 75, vertical: 8),

@@ -6,7 +6,7 @@ import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:elden_build/layout/layout.dart';
 
 class Onboarding extends StatelessWidget {
-  static String routeName = '/onboarding';
+  static const String routeName = '/onboarding';
   const Onboarding();
 
   @override

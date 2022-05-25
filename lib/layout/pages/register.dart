@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:elden_build/layout/layout.dart';
 
 class Register extends StatelessWidget {
-  static String routeName = '/register';
+  static const String routeName = '/register';
   const Register();
 
   @override
@@ -31,7 +31,7 @@ class Register extends StatelessWidget {
                       fontSize: 40
                   )
               ),
-              const Text(
+              Text(
                   'RegisteR',
                   style: TextStyle(
                       color: Colors.white,
@@ -49,7 +49,7 @@ class Register extends StatelessWidget {
                   decoration: const InputDecoration(
                     fillColor: Colors.white,
                     filled: true,
-                    border: const UnderlineInputBorder(),
+                    border: UnderlineInputBorder(),
                     labelText: 'Email',
                   ),
                 ),
@@ -87,6 +87,18 @@ class Register extends StatelessWidget {
                     filled: true,
                     border: UnderlineInputBorder(),
                     labelText: 'Confirm password',
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 75, vertical: 8),
+                child: TextFormField(
+                  style: const TextStyle(color: Colors.white),
+                  decoration: const InputDecoration(
+                    fillColor: Colors.white,
+                    filled: true,
+                    border: UnderlineInputBorder(),
+                    labelText: 'Bio',
                   ),
                 ),
               ),

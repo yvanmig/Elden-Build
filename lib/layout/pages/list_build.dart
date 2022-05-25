@@ -7,7 +7,7 @@ import 'package:elden_build/layout/layout.dart';
 import '../partials/drawer_menu.dart';
 
 class ListBuild extends StatelessWidget {
-  static String routeName = '/list-build';
+  static const  String routeName = '/list-build';
   const ListBuild();
 
   @override
@@ -20,9 +20,7 @@ class ListBuild extends StatelessWidget {
       Padding(
         padding: const EdgeInsets.only(left: 30, right: 30),
         child:
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
+          ListView(
             children:  const [
               Text(
                   'LIST BUILD',
@@ -32,27 +30,32 @@ class ListBuild extends StatelessWidget {
                   buildImage: "img/build_image.png",
                   buildStats: "STR / INT",
                   buildTitle: "Mad pyromancer",
-                  buildDescription: "Some great descritpion"),
+                  buildDescription: "Some great descritpion",
+                  buildId: 1),
               BuildCard(
                   buildImage: "img/build_image.png",
                   buildStats: "STR / INT",
-                  buildTitle: "Mad pyromancer",
-                  buildDescription: "Some great descritpion"),
+                  buildTitle: "Mad faith man",
+                  buildDescription: "Some great descritpion",
+                  buildId: 2),
               BuildCard(
                   buildImage: "img/build_image.png",
                   buildStats: "STR / INT",
-                  buildTitle: "Mad pyromancer",
-                  buildDescription: "Some great descritpion"),
+                  buildTitle: "Sane alchemist",
+                  buildDescription: "Some great descritpion",
+                  buildId: 3),
               BuildCard(
                   buildImage: "img/build_image.png",
                   buildStats: "STR / INT",
-                  buildTitle: "Mad pyromancer",
-                  buildDescription: "Some great descritpion"),
+                  buildTitle: "Bonk dude",
+                  buildDescription: "Some great descritpion",
+                  buildId: 4),
               BuildCard(
                   buildImage: "img/build_image.png",
                   buildStats: "STR / INT",
-                  buildTitle: "Mad pyromancer",
-                  buildDescription: "Some great descritpion"),
+                  buildTitle: "Wizard man",
+                  buildDescription: "Some great descritpion",
+                  buildId: 5),
               ]
           ),
       )
