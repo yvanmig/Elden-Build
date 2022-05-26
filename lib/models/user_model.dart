@@ -5,19 +5,22 @@ class User {
   String email;
   String photo;
   String bio;
+  String pass;
 
   User({
     required this.pseudo,
     required this.email,
     required this.photo,
     required this.bio,
+    required this.pass,
   });
 
   User.fromJson(Map<String, dynamic> json)
       : pseudo = json['pseudo'],
         email = json['email'],
         photo = json['photo'],
-        bio = json['bio'];
+        bio = json['bio'],
+        pass = json['pass'];
 
   Map<String, dynamic> toJson() {
     return {
@@ -25,6 +28,7 @@ class User {
       'email': email,
       'photo': photo,
       'bio': bio,
+      'pass': pass,
     };
   }
 

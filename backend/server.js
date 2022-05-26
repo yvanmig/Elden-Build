@@ -20,11 +20,22 @@ mongoose
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
 
-
+// Get All Users
 app.get("/api/users", async (req, res) => {
   try {
     const users = await User.find({}).exec();
     res.json(users);
+  } catch (e) {
+    res.status(500).json(e);
+  }
+});
+
+//Regiter new user
+app.post("/api/register", async (req, res) => {
+  try {
+    const body = req.body;
+    const user = await new User(body).save();
+    res.json(user);
   } catch (e) {
     res.status(500).json(e);
   }

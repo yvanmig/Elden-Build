@@ -22,4 +22,19 @@ class UserProvider with ChangeNotifier {
       rethrow;
     }
   }
+
+  Future<void> addUser(User newUser) async {
+    try {
+      http.Response response = await http.post(
+        Uri.parse('$host/api/register'),
+        body: json.encode(newUser.toJson()),
+        headers: {'Content-type': 'application/json'},
+      );
+      if (response.statusCode == 200) {
+        notifyListeners();
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
 }
