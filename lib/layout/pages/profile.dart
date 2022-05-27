@@ -6,9 +6,8 @@ import 'package:elden_build/models/user_model.dart';
 import 'package:provider/provider.dart';
 
 class Profile extends StatelessWidget {
-  static const String routeName = '/profile';
-
   const Profile({Key? key}) : super(key: key);
+  static const String routeName = '/profile';
 
   @override
   Widget build(BuildContext context) {

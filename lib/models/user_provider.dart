@@ -6,7 +6,7 @@ import 'user_model.dart';
 
 class UserProvider with ChangeNotifier {
   final String host = 'http://localhost:80';
-  late List<User> _users;
+  late List<User> _users = [];
 
   UnmodifiableListView<User> get users => UnmodifiableListView(_users);
   void fetchData() async {
