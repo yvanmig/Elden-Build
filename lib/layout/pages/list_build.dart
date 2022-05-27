@@ -1,64 +1,39 @@
+import 'package:elden_build/models/build_model.dart';
+import 'package:elden_build/models/build_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 //import 'package:google_fonts/google_fonts.dart';
 import 'package:elden_build/layout/layout.dart';
+import 'package:provider/provider.dart';
 
 import '../partials/drawer_menu.dart';
 
 class ListBuild extends StatelessWidget {
+  const ListBuild({Key? key}) : super(key: key);
+
   static const String routeName = '/list-build';
-  const ListBuild();
 
   @override
   Widget build(BuildContext context) {
+    List<Build> builds = Provider.of<BuildProvider>(context).builds;
     return Scaffold(
-        backgroundColor: Colors.black,
-        appBar: const CustomAppBar(),
-        drawer: const DrawerMenu(),
-        body:
-      Padding(
-        padding: const EdgeInsets.only(left: 30, right: 30),
-        child:
-          ListView(
-            children:  const [
-              Text(
-                  'LIST BUILD',
-                  style: TextStyle(color: Colors.white),
-              ),
-              BuildCard(
-                  buildImage: "img/build_image.png",
-                  buildStats: "STR / INT",
-                  buildTitle: "Mad pyromancer",
-                  buildDescription: "Some great descritpion",
-                  buildId: 1),
-              BuildCard(
-                  buildImage: "img/build_image.png",
-                  buildStats: "STR / INT",
-                  buildTitle: "Mad faith man",
-                  buildDescription: "Some great descritpion",
-                  buildId: 2),
-              BuildCard(
-                  buildImage: "img/build_image.png",
-                  buildStats: "STR / INT",
-                  buildTitle: "Sane alchemist",
-                  buildDescription: "Some great descritpion",
-                  buildId: 3),
-              BuildCard(
-                  buildImage: "img/build_image.png",
-                  buildStats: "STR / INT",
-                  buildTitle: "Bonk dude",
-                  buildDescription: "Some great descritpion",
-                  buildId: 4),
-              BuildCard(
-                  buildImage: "img/build_image.png",
-                  buildStats: "STR / INT",
-                  buildTitle: "Wizard man",
-                  buildDescription: "Some great descritpion",
-                  buildId: 5),
-              ]
-          ),
-      )
-    );
+      backgroundColor: Colors.black,
+      appBar: const CustomAppBar(),
+      drawer: const DrawerMenu(),
+      body: Padding(
+          padding: const EdgeInsets.only(left: 30, right: 30),
+          child: ListView.builder(
+              itemCount: builds.length,
+              itemBuilder: (constext, index) {
+                final currentBuild = builds[index];
 
+                return BuildCard(
+                    buildImage: currentBuild.image,
+                    buildStats: currentBuild.stat1 + ' / ' + currentBuild.stat2,
+                    buildTitle: currentBuild.name,
+                    buildDescription: currentBuild.description,
+                    buildId: index);
+              })),
+    );
   }
 }

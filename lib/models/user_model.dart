@@ -1,5 +1,3 @@
-import 'package:intl/intl.dart';
-
 class User {
   String pseudo;
   String email;

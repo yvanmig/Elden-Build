@@ -4,6 +4,7 @@ const cors = require("cors");
 const app = express();
 const path = require("path");
 const User = require("./models/user.model");
+const Build = require("./models/build.model");
 
 app.use(cors());
 mongoose.set("debug", true);
@@ -25,6 +26,16 @@ app.get("/api/users", async (req, res) => {
   try {
     const users = await User.find({}).exec();
     res.json(users);
+  } catch (e) {
+    res.status(500).json(e);
+  }
+});
+
+// Get all build
+app.get("/api/builds", async (req, res) => {
+  try {
+    const builds = await Build.find({}).exec();
+    res.json(builds);
   } catch (e) {
     res.status(500).json(e);
   }
