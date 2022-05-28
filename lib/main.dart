@@ -1,35 +1,46 @@
+import 'dart:js';
+
 import 'package:elden_build/layout/layout.dart';
 import 'package:elden_build/layout/pages/create_build.dart';
+import 'package:elden_build/models/build_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:elden_build/models/user_provider.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
-  MyApp({Key? key}) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
+
   @override
-  State<MyApp> createState() => _MyAppState();
+  State<MyApp> createState() => _MyApp();
 }
 
-class _MyAppState extends State<MyApp> {
-  final UserProvider userProvider = UserProvider();
+class _MyApp extends State<MyApp> {
+  late UserProvider userProvider = UserProvider();
+  late BuildProvider buildProvider = BuildProvider();
 
   @override
   void initState() {
     super.initState();
     userProvider.fetchData();
+    buildProvider.fetchData();
   }
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-        create: (BuildContext context) {
-          return userProvider;
-        },
+    return MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (BuildContext context) {
+            return userProvider;
+          }),
+          ChangeNotifierProvider(create: (BuildContext context) {
+            return buildProvider;
+          })
+        ],
         child: MaterialApp(
           title: 'Elden Build',
           theme: ThemeData(
