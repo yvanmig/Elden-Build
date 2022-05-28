@@ -5,6 +5,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 //import 'package:google_fonts/google_fonts.dart';
 import 'package:elden_build/layout/layout.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 class CreateBuild extends StatefulWidget {
@@ -25,7 +26,17 @@ class _CreateBuildForm extends State<CreateBuild> {
     "VIG",
     "ARC",
     "FTH",
+    "END"
   ];
+
+  String strength = "";
+  String intelligence = "";
+  String mind = "";
+  String dexterity = "";
+  String vigor = "";
+  String arcane = "";
+  String faith = "";
+  String endurance = "";
 
   var statDropDownValue1 = "STR";
   var statDropDownValue2 = "INT";
@@ -162,6 +173,178 @@ class _CreateBuildForm extends State<CreateBuild> {
                   ),
                 ],
               ),
+              Text("Enter the stats for this build", style: TextStyle(fontSize: 15)),
+               Row(
+                 mainAxisAlignment: MainAxisAlignment.spaceAround,
+                 crossAxisAlignment: CrossAxisAlignment.center,
+                 children: [
+                   Column(
+                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                     crossAxisAlignment: CrossAxisAlignment.center,
+                     children: [
+                       SizedBox(
+                         width: 100,
+                         height: 50,
+                         child:  TextFormField(
+                           style: const TextStyle(color: Colors.blueGrey),
+                           keyboardType: TextInputType.number,
+                           inputFormatters: <TextInputFormatter>[
+                             FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                           ],
+                           onChanged: (value) => strength = value,
+                           decoration: const InputDecoration(
+                             fillColor: Colors.white,
+                             filled: true,
+                             border: UnderlineInputBorder(),
+                             labelText: 'Strength',
+                             hintText: '30',
+                           ),
+                         ),
+                       ),
+                       SizedBox(
+                         width: 100,
+                         height: 50,
+                         child:  TextFormField(
+                           style: const TextStyle(color: Colors.blueGrey),
+                           keyboardType: TextInputType.number,
+                           inputFormatters: <TextInputFormatter>[
+                             FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                           ],
+                           onChanged: (value) => intelligence = value,
+                           decoration: const InputDecoration(
+                             fillColor: Colors.white,
+                             filled: true,
+                             border: UnderlineInputBorder(),
+                             labelText: 'Intelligence',
+                             hintText: '30',
+                           ),
+                         ),
+                       ),
+                       SizedBox(
+                         width: 100,
+                         height: 50,
+                         child:  TextFormField(
+                           style: const TextStyle(color: Colors.blueGrey),
+                           keyboardType: TextInputType.number,
+                           inputFormatters: <TextInputFormatter>[
+                             FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                           ],
+                           onChanged: (value) => dexterity = value,
+                           decoration: const InputDecoration(
+                             fillColor: Colors.white,
+                             filled: true,
+                             border: UnderlineInputBorder(),
+                             labelText: 'Dexterity',
+                             hintText: '30',
+                           ),
+                         ),
+                       ),
+                       SizedBox(
+                         width: 100,
+                         height: 50,
+                         child:  TextFormField(
+                           style: const TextStyle(color: Colors.blueGrey),
+                           keyboardType: TextInputType.number,
+                           inputFormatters: <TextInputFormatter>[
+                             FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                           ],
+                           onChanged: (value) => endurance = value,
+                           decoration: const InputDecoration(
+                             fillColor: Colors.white,
+                             filled: true,
+                             border: UnderlineInputBorder(),
+                             labelText: 'Endurance',
+                             hintText: '30',
+                           ),
+                         ),
+                       ),
+                     ],
+                   ),
+                   Column(
+                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                     crossAxisAlignment: CrossAxisAlignment.center,
+                     children: [
+                       SizedBox(
+                         width: 100,
+                         height: 50,
+                         child:  TextFormField(
+                           style: const TextStyle(color: Colors.blueGrey),
+                           keyboardType: TextInputType.number,
+                           inputFormatters: <TextInputFormatter>[
+                             FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                           ],
+                           onChanged: (value) => faith = value,
+                           decoration: const InputDecoration(
+                             fillColor: Colors.white,
+                             filled: true,
+                             border: UnderlineInputBorder(),
+                             labelText: 'Faith',
+                             hintText: '30',
+                           ),
+                         ),
+                       ),
+                       SizedBox(
+                         width: 100,
+                         height: 50,
+                         child:  TextFormField(
+                           style: const TextStyle(color: Colors.blueGrey),
+                           keyboardType: TextInputType.number,
+                           inputFormatters: <TextInputFormatter>[
+                             FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                           ],
+                           onChanged: (value) => mind = value,
+                           decoration: const InputDecoration(
+                             fillColor: Colors.white,
+                             filled: true,
+                             border: UnderlineInputBorder(),
+                             labelText: 'Mind',
+                             hintText: '30',
+                           ),
+                         ),
+                       ),
+                       SizedBox(
+                         width: 100,
+                         height: 50,
+                         child:  TextFormField(
+                           style: const TextStyle(color: Colors.blueGrey),
+                           keyboardType: TextInputType.number,
+                           inputFormatters: <TextInputFormatter>[
+                             FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                           ],
+                           onChanged: (value) => vigor = value,
+                           decoration: const InputDecoration(
+                             fillColor: Colors.white,
+                             filled: true,
+                             border: UnderlineInputBorder(),
+                             labelText: 'Vigor',
+                             hintText: '30',
+                           ),
+                         ),
+                       ),
+                       SizedBox(
+                         width: 100,
+                         height: 50,
+                         child:  TextFormField(
+                           style: const TextStyle(color: Colors.blueGrey),
+                           keyboardType: TextInputType.number,
+                           inputFormatters: <TextInputFormatter>[
+                             FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                           ],
+                           onChanged: (value) => arcane = value,
+                           decoration: const InputDecoration(
+                             fillColor: Colors.white,
+                             filled: true,
+                             border: UnderlineInputBorder(),
+                             labelText: 'Arcane',
+                             hintText: '30',
+                           ),
+                         ),
+                       ),
+                     ],
+                   ),
+                 ],
+               ),
+
               Container(
                 padding: const EdgeInsets.all(15.0),
                 decoration: const BoxDecoration(
@@ -451,6 +634,24 @@ class _CreateBuildForm extends State<CreateBuild> {
           child: Text(equipment.name),
         );
       }).toList(),
+    );
+  }
+  //TODO fix the setState function not updating the corresponding state value then use widget for each dropdown
+  Widget _statNumberInput(String hintText, var statName) {
+    return  TextFormField(
+      style: const TextStyle(color: Colors.blueGrey),
+      keyboardType: TextInputType.number,
+      inputFormatters: <TextInputFormatter>[
+        FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+      ],
+      onChanged: (value) => statName = value,
+      decoration: const InputDecoration(
+        fillColor: Colors.white,
+        filled: true,
+        border: UnderlineInputBorder(),
+        labelText: 'Strength',
+        hintText: '30',
+      ),
     );
   }
 
