@@ -52,4 +52,15 @@ app.post("/api/register", async (req, res) => {
   }
 });
 
+//Add new build
+app.post("/api/new-build", async (req, res) => {
+  try {
+    const body = req.body;
+    const build = await new Build(body).save();
+    res.json(build);
+  } catch (e) {
+    res.status(500).json(e);
+  }
+});
+
 app.listen(80);

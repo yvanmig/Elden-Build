@@ -22,4 +22,19 @@ class BuildProvider with ChangeNotifier {
       rethrow;
     }
   }
+
+  Future<void> addBuild(Build newBuild) async {
+    try {
+      http.Response response = await http.post(
+        Uri.parse('$host/api/new-build'),
+        body: json.encode(newBuild.toJson()),
+        headers: {'Content-type': 'application/json'},
+      );
+      if (response.statusCode == 200) {
+        notifyListeners();
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
 }
