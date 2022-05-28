@@ -53,7 +53,7 @@ app.post("/api/register", async (req, res) => {
 });
 
 //Add new build
-app.post("/api/new-build", async (req, res) => {
+app.post("/api/addbuild", async (req, res) => {
   try {
     const body = req.body;
     const build = await new Build(body).save();

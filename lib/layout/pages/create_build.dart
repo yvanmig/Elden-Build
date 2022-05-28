@@ -1,3 +1,5 @@
+import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 import 'package:elden_build/layout/partials/drawer_menu.dart';
 import 'package:elden_build/model/Equipment_2.dart';
 import 'package:elden_build/models/build_model.dart';
@@ -7,8 +9,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 //import 'package:google_fonts/google_fonts.dart';
 import 'package:elden_build/layout/layout.dart';
-import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
 
 class CreateBuild extends StatefulWidget {
   const CreateBuild({Key? key}) : super(key: key);
@@ -19,7 +19,7 @@ class CreateBuild extends StatefulWidget {
 }
 
 class _CreateBuildForm extends State<CreateBuild> {
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> buildFormKey = GlobalKey<FormState>();
 
   final List<String> stats = [
     "STR",
@@ -32,14 +32,14 @@ class _CreateBuildForm extends State<CreateBuild> {
     "END"
   ];
 
-  String strength = "";
-  String intelligence = "";
-  String mind = "";
-  String dexterity = "";
-  String vigor = "";
-  String arcane = "";
-  String faith = "";
-  String endurance = "";
+  // String strength = "";
+  // String intelligence = "";
+  // String mind = "";
+  // String dexterity = "";
+  // String vigor = "";
+  // String arcane = "";
+  // String faith = "";
+  // String endurance = "";
 
   var statDropDownValue1 = "STR";
   var statDropDownValue2 = "INT";
@@ -76,11 +76,34 @@ class _CreateBuildForm extends State<CreateBuild> {
 
   late Build newBuild;
 
+  String? name;
+  String? image;
+  String? description;
+  String? mainStat1;
+  String? mainStat2;
+  String? vigor;
+  String? mind;
+  String? endurence;
+  String? strength;
+  String? dexterity;
+  String? intelligence;
+  String? faith;
+  String? arcane;
+  int? weapon1;
+  int? weapon2;
+  int? weapon3;
+  int? spell1;
+  int? spell2;
+  int? spell3;
+  int? talisman1;
+  int? talisman2;
+  int? talisman3;
+
   @override
   void initState() {
     newBuild = Build(
         name: " ",
-        image: "",
+        image: " ",
         description: " ",
         mainStat1: " ",
         mainStat2: " ",
@@ -106,17 +129,15 @@ class _CreateBuildForm extends State<CreateBuild> {
 
   Future<void> submitNewBuild() async {
     try {
-      if (formKey.currentState!.validate()) {
-        formKey.currentState!.save();
+      buildFormKey.currentState!.save();
 
-        await Provider.of<BuildProvider>(context, listen: false)
-            .addBuild(newBuild);
+      await Provider.of<BuildProvider>(context, listen: false)
+          .addBuild(newBuild);
 
-        ScaffoldMessenger.of(context)
-          ..removeCurrentSnackBar()
-          ..showSnackBar(SnackBar(
-              content: Text("Votre build ${newBuild.name} a été ajouté !")));
-      }
+      ScaffoldMessenger.of(context)
+        ..removeCurrentSnackBar()
+        ..showSnackBar(SnackBar(
+            content: Text("Votre build ${newBuild.name} a été ajouté !")));
     } catch (e) {
       print("Erreur, votre build n'est pas créé !");
     }
@@ -139,46 +160,54 @@ class _CreateBuildForm extends State<CreateBuild> {
             ],
           ),
           Form(
-              key: formKey,
+              key: buildFormKey,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Padding(
                     padding:
                         const EdgeInsets.symmetric(horizontal: 75, vertical: 8),
-                    child: TextFormField(
-                      style: const TextStyle(color: Colors.blueGrey),
-                      decoration: const InputDecoration(
-                        fillColor: Colors.white,
-                        filled: true,
-                        border: UnderlineInputBorder(),
-                        labelText: 'Build Name',
-                        hintText: 'Envoy Pyromancer',
+                    child: SizedBox(
+                      width: 100,
+                      height: 50,
+                      child: TextFormField(
+                        style: const TextStyle(color: Colors.blueGrey),
+                        decoration: const InputDecoration(
+                          fillColor: Colors.white,
+                          filled: true,
+                          border: UnderlineInputBorder(),
+                          labelText: 'Build Name',
+                          hintText: 'Envoy Pyromancer',
+                        ),
+                        onSaved: (value) => newBuild.name = value!,
                       ),
-                      onSaved: (value) => newBuild.name = value!,
                     ),
                   ),
                   Padding(
                     padding:
                         const EdgeInsets.symmetric(horizontal: 75, vertical: 8),
-                    child: TextFormField(
-                      style: const TextStyle(color: Colors.blueGrey),
-                      decoration: const InputDecoration(
-                        fillColor: Colors.white,
-                        filled: true,
-                        border: UnderlineInputBorder(),
-                        labelText: 'Description',
-                        hintText: 'Describe your build in a few words',
+                    child: SizedBox(
+                      width: 100,
+                      height: 50,
+                      child: TextFormField(
+                        style: const TextStyle(color: Colors.blueGrey),
+                        decoration: const InputDecoration(
+                          fillColor: Colors.white,
+                          filled: true,
+                          border: UnderlineInputBorder(),
+                          labelText: 'Description',
+                          hintText: 'Describe your build in a few words',
+                        ),
+                        onSaved: (value) => newBuild.description = value!,
                       ),
-                      onSaved: (value) => newBuild.description = value!,
                     ),
                   ),
-                  Text("Choose the 2 main stats for this build",
+                  const Text("Choose the 2 main stats for this build",
                       style: TextStyle(fontSize: 15)),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      DropdownButtonFormField<String>(
+                      DropdownButton<String>(
                         value: statDropDownValue1,
                         icon: const Icon(Icons.arrow_downward),
                         dropdownColor: Colors.black,
@@ -197,7 +226,7 @@ class _CreateBuildForm extends State<CreateBuild> {
                           );
                         }).toList(),
                       ),
-                      DropdownButtonFormField<String>(
+                      DropdownButton<String>(
                         value: statDropDownValue2,
                         icon: const Icon(Icons.arrow_downward),
                         dropdownColor: Colors.black,
@@ -215,6 +244,187 @@ class _CreateBuildForm extends State<CreateBuild> {
                             child: Text(stat),
                           );
                         }).toList(),
+                      ),
+                    ],
+                  ),
+                  const Text("Enter the stats for this build",
+                      style: TextStyle(fontSize: 15)),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                            width: 100,
+                            height: 50,
+                            child: TextFormField(
+                              style: const TextStyle(color: Colors.blueGrey),
+                              keyboardType: TextInputType.number,
+                              inputFormatters: <TextInputFormatter>[
+                                FilteringTextInputFormatter.allow(
+                                    RegExp(r'[0-9]')),
+                              ],
+                              onSaved: (value) => newBuild.strength = value!,
+                              decoration: const InputDecoration(
+                                fillColor: Colors.white,
+                                filled: true,
+                                border: UnderlineInputBorder(),
+                                labelText: 'Strength',
+                                hintText: '30',
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 100,
+                            height: 50,
+                            child: TextFormField(
+                              style: const TextStyle(color: Colors.blueGrey),
+                              keyboardType: TextInputType.number,
+                              inputFormatters: <TextInputFormatter>[
+                                FilteringTextInputFormatter.allow(
+                                    RegExp(r'[0-9]')),
+                              ],
+                              onSaved: (value) =>
+                                  newBuild.intelligence = value!,
+                              decoration: const InputDecoration(
+                                fillColor: Colors.white,
+                                filled: true,
+                                border: UnderlineInputBorder(),
+                                labelText: 'Intelligence',
+                                hintText: '30',
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 100,
+                            height: 50,
+                            child: TextFormField(
+                              style: const TextStyle(color: Colors.blueGrey),
+                              keyboardType: TextInputType.number,
+                              inputFormatters: <TextInputFormatter>[
+                                FilteringTextInputFormatter.allow(
+                                    RegExp(r'[0-9]')),
+                              ],
+                              onSaved: (value) => newBuild.dexterity = value!,
+                              decoration: const InputDecoration(
+                                fillColor: Colors.white,
+                                filled: true,
+                                border: UnderlineInputBorder(),
+                                labelText: 'Dexterity',
+                                hintText: '30',
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 100,
+                            height: 50,
+                            child: TextFormField(
+                              style: const TextStyle(color: Colors.blueGrey),
+                              keyboardType: TextInputType.number,
+                              inputFormatters: <TextInputFormatter>[
+                                FilteringTextInputFormatter.allow(
+                                    RegExp(r'[0-9]')),
+                              ],
+                              onSaved: (value) => newBuild.endurence = value!,
+                              decoration: const InputDecoration(
+                                fillColor: Colors.white,
+                                filled: true,
+                                border: UnderlineInputBorder(),
+                                labelText: 'Endurance',
+                                hintText: '30',
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                            width: 100,
+                            height: 50,
+                            child: TextFormField(
+                              style: const TextStyle(color: Colors.blueGrey),
+                              keyboardType: TextInputType.number,
+                              inputFormatters: <TextInputFormatter>[
+                                FilteringTextInputFormatter.allow(
+                                    RegExp(r'[0-9]')),
+                              ],
+                              onSaved: (value) => newBuild.faith = value!,
+                              decoration: const InputDecoration(
+                                fillColor: Colors.white,
+                                filled: true,
+                                border: UnderlineInputBorder(),
+                                labelText: 'Faith',
+                                hintText: '30',
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 100,
+                            height: 50,
+                            child: TextFormField(
+                              style: const TextStyle(color: Colors.blueGrey),
+                              keyboardType: TextInputType.number,
+                              inputFormatters: <TextInputFormatter>[
+                                FilteringTextInputFormatter.allow(
+                                    RegExp(r'[0-9]')),
+                              ],
+                              onSaved: (value) => newBuild.mind = value!,
+                              decoration: const InputDecoration(
+                                fillColor: Colors.white,
+                                filled: true,
+                                border: UnderlineInputBorder(),
+                                labelText: 'Mind',
+                                hintText: '30',
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 100,
+                            height: 50,
+                            child: TextFormField(
+                              style: const TextStyle(color: Colors.blueGrey),
+                              keyboardType: TextInputType.number,
+                              inputFormatters: <TextInputFormatter>[
+                                FilteringTextInputFormatter.allow(
+                                    RegExp(r'[0-9]')),
+                              ],
+                              onSaved: (value) => newBuild.vigor = value!,
+                              decoration: const InputDecoration(
+                                fillColor: Colors.white,
+                                filled: true,
+                                border: UnderlineInputBorder(),
+                                labelText: 'Vigor',
+                                hintText: '30',
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 100,
+                            height: 50,
+                            child: TextFormField(
+                              style: const TextStyle(color: Colors.blueGrey),
+                              keyboardType: TextInputType.number,
+                              inputFormatters: <TextInputFormatter>[
+                                FilteringTextInputFormatter.allow(
+                                    RegExp(r'[0-9]')),
+                              ],
+                              onSaved: (value) => newBuild.arcane = value!,
+                              decoration: const InputDecoration(
+                                fillColor: Colors.white,
+                                filled: true,
+                                border: UnderlineInputBorder(),
+                                labelText: 'Arcane',
+                                hintText: '30',
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
@@ -248,9 +458,8 @@ class _CreateBuildForm extends State<CreateBuild> {
                           onChanged: (String? newValue) {
                             setState(() {
                               weaponDropDownValue1 = newValue!;
-                              newBuild.weapon1 =
-                                  int.parse(weaponDropDownValue1);
                             });
+                            newBuild.weapon1 = int.parse(weaponDropDownValue1);
                           },
                           items: weapons.map((Equipment2 weapon) {
                             return DropdownMenuItem<String>(
@@ -274,9 +483,8 @@ class _CreateBuildForm extends State<CreateBuild> {
                           onChanged: (String? newValue) {
                             setState(() {
                               weaponDropDownValue2 = newValue!;
-                              newBuild.weapon2 =
-                                  int.parse(weaponDropDownValue2);
                             });
+                            newBuild.weapon2 = int.parse(weaponDropDownValue2);
                           },
                           items: weapons.map((Equipment2 weapon) {
                             return DropdownMenuItem<String>(
@@ -303,6 +511,7 @@ class _CreateBuildForm extends State<CreateBuild> {
                               newBuild.weapon3 =
                                   int.parse(weaponDropDownValue3);
                             });
+                            newBuild.weapon3 = int.parse(weaponDropDownValue3);
                           },
                           items: weapons.map((Equipment2 weapon) {
                             return DropdownMenuItem<String>(
@@ -343,8 +552,8 @@ class _CreateBuildForm extends State<CreateBuild> {
                           onChanged: (String? newValue) {
                             setState(() {
                               spellDropDownValue1 = newValue!;
-                              newBuild.spell1 = spellDropDownValue1;
                             });
+                            newBuild.spell1 = int.parse(spellDropDownValue1);
                           },
                           items: spells.map((Equipment2 spell) {
                             return DropdownMenuItem<String>(
@@ -368,8 +577,8 @@ class _CreateBuildForm extends State<CreateBuild> {
                           onChanged: (String? newValue) {
                             setState(() {
                               spellDropDownValue2 = newValue!;
-                              newBuild.spell2 = spellDropDownValue2;
                             });
+                            newBuild.spell2 = int.parse(spellDropDownValue2);
                           },
                           items: spells.map((Equipment2 spell) {
                             return DropdownMenuItem<String>(
@@ -393,8 +602,8 @@ class _CreateBuildForm extends State<CreateBuild> {
                           onChanged: (String? newValue) {
                             setState(() {
                               spellDropDownValue3 = newValue!;
-                              newBuild.spell3 = spellDropDownValue3;
                             });
+                            newBuild.spell3 = int.parse(spellDropDownValue3);
                           },
                           items: spells.map((Equipment2 spell) {
                             return DropdownMenuItem<String>(
@@ -435,8 +644,9 @@ class _CreateBuildForm extends State<CreateBuild> {
                           onChanged: (String? newValue) {
                             setState(() {
                               talismanDropDownValue1 = newValue!;
-                              newBuild.talisman1 = talismanDropDownValue1;
                             });
+                            newBuild.talisman1 =
+                                int.parse(talismanDropDownValue1);
                           },
                           items: talismans.map((Equipment2 talisman) {
                             return DropdownMenuItem<String>(
@@ -460,8 +670,9 @@ class _CreateBuildForm extends State<CreateBuild> {
                           onChanged: (String? newValue) {
                             setState(() {
                               talismanDropDownValue2 = newValue!;
-                              newBuild.talisman2 = talismanDropDownValue2;
                             });
+                            newBuild.talisman2 =
+                                int.parse(talismanDropDownValue2);
                           },
                           items: talismans.map((Equipment2 talisman) {
                             return DropdownMenuItem<String>(
@@ -485,8 +696,9 @@ class _CreateBuildForm extends State<CreateBuild> {
                           onChanged: (String? newValue) {
                             setState(() {
                               talismanDropDownValue3 = newValue!;
-                              newBuild.talisman3 = talismanDropDownValue3;
                             });
+                            newBuild.talisman3 =
+                                int.parse(talismanDropDownValue3);
                           },
                           items: talismans.map((Equipment2 talisman) {
                             return DropdownMenuItem<String>(

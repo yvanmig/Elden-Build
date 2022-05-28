@@ -26,7 +26,7 @@ class BuildProvider with ChangeNotifier {
   Future<void> addBuild(Build newBuild) async {
     try {
       http.Response response = await http.post(
-        Uri.parse('$host/api/new-build'),
+        Uri.parse('$host/api/addbuild'),
         body: json.encode(newBuild.toJson()),
         headers: {'Content-type': 'application/json'},
       );
