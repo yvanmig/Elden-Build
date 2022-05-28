@@ -29,7 +29,8 @@ class ListBuild extends StatelessWidget {
 
                 return BuildCard(
                     buildImage: currentBuild.image,
-                    buildStats: currentBuild.stat1 + ' / ' + currentBuild.stat2,
+                    buildStats:
+                        currentBuild.mainStat1 + ' / ' + currentBuild.mainStat2,
                     buildTitle: currentBuild.name,
                     buildDescription: currentBuild.description,
                     buildId: index);
