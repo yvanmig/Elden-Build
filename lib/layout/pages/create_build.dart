@@ -7,6 +7,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 //import 'package:google_fonts/google_fonts.dart';
 import 'package:elden_build/layout/layout.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 class CreateBuild extends StatefulWidget {
@@ -28,7 +29,17 @@ class _CreateBuildForm extends State<CreateBuild> {
     "VIG",
     "ARC",
     "FTH",
+    "END"
   ];
+
+  String strength = "";
+  String intelligence = "";
+  String mind = "";
+  String dexterity = "";
+  String vigor = "";
+  String arcane = "";
+  String faith = "";
+  String endurance = "";
 
   var statDropDownValue1 = "STR";
   var statDropDownValue2 = "INT";
@@ -528,4 +539,23 @@ class _CreateBuildForm extends State<CreateBuild> {
       }).toList(),
     );
   }
+}
+
+//TODO fix the setState function not updating the corresponding state value then use widget for each dropdown
+Widget _statNumberInput(String hintText, var statName) {
+  return TextFormField(
+    style: const TextStyle(color: Colors.blueGrey),
+    keyboardType: TextInputType.number,
+    inputFormatters: <TextInputFormatter>[
+      FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+    ],
+    onChanged: (value) => statName = value,
+    decoration: const InputDecoration(
+      fillColor: Colors.white,
+      filled: true,
+      border: UnderlineInputBorder(),
+      labelText: 'Strength',
+      hintText: '30',
+    ),
+  );
 }
