@@ -19,6 +19,8 @@ class BuildCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String thumbnailImage = _getBuildThumbnailFromStat(buildStats);
+
     return GestureDetector(
       onTap: () {
         Navigator.pushNamed(context, "/build-page",
@@ -39,7 +41,11 @@ class BuildCard extends StatelessWidget {
                 children: [
                   Column(
                     children: [
-                      Image(image: NetworkImage(buildImage)),
+                      Container (
+                        width: 120,
+                        height: 90,
+                        child: Image(image: NetworkImage(thumbnailImage)),
+                      ),
                       Text(
                         buildStats,
                         style: TextStyle(color: Colors.white),
@@ -64,5 +70,21 @@ class BuildCard extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+String _getBuildThumbnailFromStat(String stat) {
+  if(stat.contains("STR")) {
+
+    return "img/strength.jpg";
+  } else if(stat.contains("INT")) {
+
+    return "img/intelligence.png";
+  } else if(stat.contains("DEX")) {
+
+    return "img/dexterity.jpg";
+  } else {
+
+    return "img/faith.jpg";
   }
 }
