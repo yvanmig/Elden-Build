@@ -5,7 +5,7 @@ import 'dart:convert';
 import 'user_model.dart';
 
 class UserProvider with ChangeNotifier {
-  final String host = 'http://localhost:80';
+  final String host = 'http://localhost:3000';
   late List<User> _users = [];
 
   UnmodifiableListView<User> get users => UnmodifiableListView(_users);
@@ -26,12 +26,36 @@ class UserProvider with ChangeNotifier {
   Future<void> addUser(User newUser) async {
     try {
       http.Response response = await http.post(
-        Uri.parse('$host/api/register'),
+        Uri.parse('$host/api/users'),
         body: json.encode(newUser.toJson()),
         headers: {'Content-type': 'application/json'},
       );
       if (response.statusCode == 200) {
+        _users.add(
+          User.fromJson(
+            json.decode(response.body),
+          ),
+        );
         notifyListeners();
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<String> logUser(User user) async {
+    try {
+      http.Response response = await http.post(
+        Uri.parse('$host/api/users/login'),
+        body: json.encode(user.toJson()),
+        headers: {'Content-type': 'application/json'},
+      );
+      Map<String, dynamic> temp = json.decode(response.body);
+
+      if (response.statusCode == 200) {
+        return ("200");
+      } else {
+        return (temp['error']);
       }
     } catch (e) {
       rethrow;
