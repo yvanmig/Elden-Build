@@ -16,8 +16,8 @@ class Stat extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(name),
-        Text(value.toString())
+        Text(name, style: TextStyle(color: Colors.white)),
+        Text(value.toString(), style:TextStyle(color: Colors.white))
       ],
     );
   }

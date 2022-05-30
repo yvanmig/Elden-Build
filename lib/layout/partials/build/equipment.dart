@@ -22,7 +22,7 @@ class Equipment extends StatelessWidget {
           image: NetworkImage(image),
         ),
         Expanded(
-            child: Text(name))
+            child: Text(name, style: TextStyle(color: Colors.white)))
       ],
     );
   }

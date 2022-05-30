@@ -83,7 +83,7 @@ class BuildPage extends StatelessWidget {
                     Expanded(
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 75),
-                        child: Text(buildDescription),
+                        child: Text(buildDescription, style: TextStyle(color: Colors.white)),
                       ),
                     )
                   ],

@@ -19,6 +19,7 @@ class DrawerMenuItem extends StatelessWidget {
           itemTitle,
           textAlign: TextAlign.center,
           style: const TextStyle(
+            fontFamily: 'Mantinia',
               color: Colors.white,
               fontSize: 30
           )
