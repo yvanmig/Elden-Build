@@ -69,8 +69,9 @@ class _LoginState extends State<Login> {
                     padding:
                         const EdgeInsets.symmetric(horizontal: 75, vertical: 8),
                     child: TextFormField(
-                      style: const TextStyle(color: Colors.white),
+                      style: Theme.of(context).textTheme.bodyText1,
                       decoration: const InputDecoration(
+                        labelStyle: TextStyle(fontFamily: "Mantinia"),
                         fillColor: Colors.white,
                         filled: true,
                         border: UnderlineInputBorder(),
@@ -83,8 +84,9 @@ class _LoginState extends State<Login> {
                     padding:
                         const EdgeInsets.symmetric(horizontal: 75, vertical: 8),
                     child: TextFormField(
-                      style: const TextStyle(color: Colors.white),
+                      style: Theme.of(context).textTheme.bodyText1,
                       decoration: const InputDecoration(
+                        labelStyle: TextStyle(fontFamily: "Mantinia"),
                         fillColor: Colors.white,
                         filled: true,
                         border: UnderlineInputBorder(),
@@ -104,6 +106,9 @@ class _LoginState extends State<Login> {
                 },
                 child: const Text("SE CONNECTER"),
               ),
+          Padding(
+            padding :const EdgeInsets.only(top:20),
+            child:
               RichText(
                 text: TextSpan(
                   children: [
@@ -121,7 +126,8 @@ class _LoginState extends State<Login> {
                     ),
                   ],
                 ),
-              )
+              ),
+            )
             ],
           ),
         ],
