@@ -32,15 +32,6 @@ class _CreateBuildForm extends State<CreateBuild> {
     "END"
   ];
 
-  // String strength = "";
-  // String intelligence = "";
-  // String mind = "";
-  // String dexterity = "";
-  // String vigor = "";
-  // String arcane = "";
-  // String faith = "";
-  // String endurance = "";
-
   var statDropDownValue1 = "STR";
   var statDropDownValue2 = "INT";
 
@@ -138,6 +129,9 @@ class _CreateBuildForm extends State<CreateBuild> {
         ..removeCurrentSnackBar()
         ..showSnackBar(SnackBar(
             content: Text("Votre build ${newBuild.name} a été ajouté !")));
+
+      Provider.of<BuildProvider>(context, listen: false).fetchData();
+      Navigator.pushNamed(context, ListBuild.routeName);
     } catch (e) {
       print("Erreur, votre build n'est pas créé !");
     }
