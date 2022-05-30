@@ -59,14 +59,18 @@ class BuildCard extends StatelessWidget {
                   ),
                   Flexible(
                     child: Container(
+                      width: 180,
                       padding: const EdgeInsets.only(right: 13.0),
                       child: Text(
                         buildDescription,
                         softWrap: true,
+                        overflow: TextOverflow.clip,
                         textAlign: TextAlign.center,
                         style: const TextStyle(
-                          fontSize: 13.0,
+                          fontSize: 15.0,
                           color: Colors.white,
+                          fontFamily: 'Garamond',
+                          letterSpacing: 0.3
                         ),
                       ),
                     ),
