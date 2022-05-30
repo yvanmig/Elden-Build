@@ -141,9 +141,3 @@ class Profile extends StatefulWidget {
       );
     }
   }
-
-
-
-
-
-

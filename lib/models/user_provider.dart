@@ -1,3 +1,4 @@
+import 'package:elden_build/layout/layout.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:collection';
@@ -9,6 +10,7 @@ class UserProvider with ChangeNotifier {
   late List<User> _users = [];
 
   UnmodifiableListView<User> get users => UnmodifiableListView(_users);
+
   void fetchData() async {
     try {
       http.Response response = await http.get(Uri.parse('$host/api/users'));
@@ -32,6 +34,25 @@ class UserProvider with ChangeNotifier {
       );
       if (response.statusCode == 200) {
         notifyListeners();
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<String> logUser(User user) async {
+    try {
+      http.Response response = await http.post(
+        Uri.parse('$host/api/login'),
+        body: json.encode(user.toJson()),
+        headers: {'Content-type': 'application/json'},
+      );
+      Map<String, dynamic> temp = json.decode(response.body);
+
+      if (response.statusCode == 200) {
+        return ("200");
+      } else {
+        return (temp['error']);
       }
     } catch (e) {
       rethrow;
