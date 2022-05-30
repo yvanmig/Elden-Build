@@ -11,36 +11,40 @@ class Profile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<User> users = Provider.of<UserProvider>(context).users;
     return Scaffold(
         backgroundColor: Colors.black,
         appBar: const CustomAppBar(),
         drawer: const DrawerMenu(),
         body: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Column(
-                children: users.map((user) {
-              return Container(
-                  child: Column(children: [
-                Container(
-                    width: 190.0,
-                    height: 190.0,
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        image: DecorationImage(
-                            fit: BoxFit.fill,
-                            image: NetworkImage("img/${user.photo}")))),
-                Column(children: [
-                  ProfileRow(rowTitle: "Pseudo", rowData: user.pseudo),
-                  ProfileRowDivider(),
-                  ProfileRow(rowTitle: "Email", rowData: user.email),
-                  ProfileRowDivider(),
-                ])
-              ]));
-            }).toList())
-          ],
-        ));
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Column(
+                children: [
+                  Container(
+                      child: Column(children: [
+                    Container(
+                      width: 190.0,
+                      height: 190.0,
+                      //
+                    ),
+                    Column(children: [
+                      ProfileRow(rowTitle: "Pseudo", rowData: user.pseudo),
+                      ProfileRowDivider(),
+                      ProfileRow(rowTitle: "Email", rowData: user.email),
+                      ProfileRowDivider(),
+                      ProfileRow(rowTitle: "bio", rowData: user.bio),
+                      ProfileRowDivider(),
+                    ])
+                  ]))
+                ],
+              )
+            ]));
   }
+}
+
+class LoginData {
+  final String email;
+
+  LoginData({required this.email});
 }

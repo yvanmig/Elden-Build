@@ -1,10 +1,13 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
 const cors = require("cors");
 const app = express();
 const path = require("path");
 const User = require("./models/user.model");
 const Build = require("./models/build.model");
+const e = require("express");
+const jwt = require('jsonwebtoken');
 
 app.use(cors());
 mongoose.set("debug", true);
@@ -43,13 +46,20 @@ app.get("/api/builds", async (req, res) => {
 
 //Regiter new user
 app.post("/api/register", async (req, res) => {
-  try {
-    const body = req.body;
-    const user = await new User(body).save();
-    res.json(user);
-  } catch (e) {
-    res.status(500).json(e);
-  }
+  bcrypt.hash(req.body.pass, 10)
+  .then(hash => {
+    const user = new User({
+      email: req.body.email,
+      pass: hash,
+      bio: req.body.bio,
+      pseudo: req.body.bio,
+      photo: " "
+    });
+    user.save()
+    .then(() => res.status(201).json({message: 'Nouvel utilisateur créé'})).
+    catch(error => res.status(400).json({error: error}));
+  })
+  .catch(error => res.status(500).json({error: error}));
 });
 
 //Add new build
@@ -61,6 +71,28 @@ app.post("/api/addbuild", async (req, res) => {
   } catch (e) {
     res.status(500).json(e);
   }
+});
+
+//Login 
+app.post("/api/login", async (req, res) => {
+  User.findOne({ email: req.body.email })
+    .then(user => {
+      if (!user) {
+        return res.status(401).json({ error: 'Aucun utilisateur n\'est enregistré avec cet email' });
+      }
+      bcrypt.compare(req.body.pass, user.pass)
+        .then(valid => {
+          if (!valid) {
+            return res.status(401).json({ error: 'Le mot de passe saisi est incorrect' });
+          }
+          res.status(200).json({
+            userId: user._id,
+            currentUser: user,
+          });
+
+        })
+        .catch(error => res.status(500).json({ error }));
+    })
 });
 
 app.listen(80);
