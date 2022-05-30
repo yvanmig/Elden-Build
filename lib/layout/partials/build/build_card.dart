@@ -1,4 +1,5 @@
 import 'package:elden_build/main.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
@@ -32,15 +33,19 @@ class BuildCard extends StatelessWidget {
         child: Card(
           elevation: 0,
           margin: const EdgeInsets.all(20.0),
-          color: Color.fromRGBO(160, 141, 106, 1.0),
+          color: const Color.fromRGBO(160, 141, 106, 1.0),
           child: Padding(
               padding: const EdgeInsets.all(5),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Column(
                     children: [
+                      Text(
+                        buildTitle,
+                        style: const TextStyle(color: Colors.white),
+                      ),
                       Container (
                         width: 120,
                         height: 90,
@@ -48,25 +53,27 @@ class BuildCard extends StatelessWidget {
                       ),
                       Text(
                         buildStats,
-                        style: TextStyle(color: Colors.white),
+                        style: const TextStyle(color: Colors.white),
                       )
                     ],
                   ),
-                  Column(
-                    children: [
-                      Text(
-                        buildTitle,
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      Text(
+                  Flexible(
+                    child: Container(
+                      padding: const EdgeInsets.only(right: 13.0),
+                      child: Text(
                         buildDescription,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(color: Colors.white),
-                      )
-                    ],
+                        softWrap: true,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          fontSize: 13.0,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
                   ),
                 ],
-              )),
+              ),
+          ),
         ),
       ),
     );
