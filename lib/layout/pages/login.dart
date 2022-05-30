@@ -33,7 +33,7 @@ class _LoginState extends State<Login> {
         await Provider.of<UserProvider>(context, listen: false).logUser(user);
 
     if (rep == "200") {
-      Navigator.pushNamed(context, Profile.routeName);
+      Navigator.pushNamed(context, ListBuild.routeName);
     } else {
       setState(() {
         errorMessage = rep;
@@ -106,28 +106,27 @@ class _LoginState extends State<Login> {
                 },
                 child: const Text("SE CONNECTER"),
               ),
-          Padding(
-            padding :const EdgeInsets.only(top:20),
-            child:
-              RichText(
-                text: TextSpan(
-                  children: [
-                    const TextSpan(
-                      text: "You don't have an account yet ?",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    TextSpan(
-                      text: ' sign in',
-                      style: const TextStyle(color: Colors.blueAccent),
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = () {
-                          Navigator.pushNamed(context, "/register");
-                        },
-                    ),
-                  ],
+              Padding(
+                padding: const EdgeInsets.only(top: 20),
+                child: RichText(
+                  text: TextSpan(
+                    children: [
+                      const TextSpan(
+                        text: "You don't have an account yet ?",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      TextSpan(
+                        text: ' sign in',
+                        style: const TextStyle(color: Colors.blueAccent),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            Navigator.pushNamed(context, "/register");
+                          },
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            )
+              )
             ],
           ),
         ],

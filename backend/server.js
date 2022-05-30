@@ -52,7 +52,7 @@ app.post("/api/register", async (req, res) => {
       email: req.body.email,
       pass: hash,
       bio: req.body.bio,
-      pseudo: req.body.bio,
+      pseudo: req.body.pseudo,
       photo: " "
     });
     user.save()
@@ -86,8 +86,7 @@ app.post("/api/login", async (req, res) => {
             return res.status(401).json({ error: 'Le mot de passe saisi est incorrect' });
           }
           res.status(200).json({
-            userId: user._id,
-            currentUser: user,
+            user,
           });
 
         })
