@@ -34,8 +34,9 @@ class Login extends StatelessWidget {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 75, vertical: 8),
                 child: TextFormField(
-                  style: const TextStyle(color: Colors.white),
+                  style: Theme.of(context).textTheme.bodyText1,
                   decoration: const InputDecoration(
+                    labelStyle: TextStyle(fontFamily: "Mantinia"),
                     fillColor: Colors.white,
                     filled: true,
                     border: UnderlineInputBorder(),
@@ -47,8 +48,9 @@ class Login extends StatelessWidget {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 75, vertical: 8),
                 child: TextFormField(
-                  style: const TextStyle(color: Colors.white),
+                  style: Theme.of(context).textTheme.bodyText1,
                   decoration: const InputDecoration(
+                    labelStyle: TextStyle(fontFamily: "Mantinia"),
                     fillColor: Colors.white,
                     filled: true,
                     border: UnderlineInputBorder(),
@@ -61,6 +63,9 @@ class Login extends StatelessWidget {
           Column(
             children: [
               const FormButton(buttonText: "LOG IN", route: "/login"),
+          Padding(
+            padding :const EdgeInsets.only(top:20),
+            child:
               RichText(
                 text: TextSpan(
                   children: [
@@ -78,7 +83,8 @@ class Login extends StatelessWidget {
                     ),
                   ],
                 ),
-              )
+              ),
+            )
             ],
           ),
         ],

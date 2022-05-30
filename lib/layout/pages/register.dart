@@ -74,7 +74,7 @@ class _RegisterForm extends State<Register> {
               ),
               Text('Elden rinG',
                   style: TextStyle(color: Colors.white, fontSize: 40)),
-              Text('RegisteR',
+              Text('Create a Build',
                   style: TextStyle(color: Colors.white, fontSize: 30)),
             ],
           ),
@@ -86,11 +86,11 @@ class _RegisterForm extends State<Register> {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 75, vertical: 8),
                   child: TextFormField(
-                    style: const TextStyle(color: Colors.blueGrey),
+                    style: Theme.of(context).textTheme.bodyText1,
                     controller: emailController,
                     keyboardType: TextInputType.emailAddress,
-                    autofillHints: const [AutofillHints.email],
                     decoration: const InputDecoration(
+                      labelStyle: TextStyle(fontFamily: "Mantinia"),
                       fillColor: Colors.white,
                       filled: true,
                       border: UnderlineInputBorder(),
@@ -100,7 +100,7 @@ class _RegisterForm extends State<Register> {
                     onSaved: (value) => newUser.email = value!,
                     validator: (email) =>
                         email != null && !EmailValidator.validate(email)
-                            ? 'Saississer un email valide !'
+                            ? 'Saisissez un email valide !'
                             : null,
                   ),
                 ),
@@ -108,8 +108,9 @@ class _RegisterForm extends State<Register> {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 75, vertical: 8),
                   child: TextFormField(
-                    style: const TextStyle(color: Colors.blueGrey),
+                    style: Theme.of(context).textTheme.bodyText1,
                     decoration: const InputDecoration(
+                      labelStyle: TextStyle(fontFamily: "Mantinia"),
                       fillColor: Colors.white,
                       filled: true,
                       border: UnderlineInputBorder(),
@@ -122,12 +123,14 @@ class _RegisterForm extends State<Register> {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 75, vertical: 8),
                   child: TextFormField(
-                    style: const TextStyle(color: Colors.blueGrey),
+                    style: Theme.of(context).textTheme.bodyText1,
                     decoration: const InputDecoration(
+                      labelStyle: TextStyle(fontFamily: "Mantinia"),
                       fillColor: Colors.white,
                       filled: true,
                       border: UnderlineInputBorder(),
                       labelText: 'Password',
+                      hintText: '******',
                     ),
                     onSaved: (value) => newUser.pass = value!,
                   ),
@@ -136,25 +139,14 @@ class _RegisterForm extends State<Register> {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 75, vertical: 8),
                   child: TextFormField(
-                    style: const TextStyle(color: Colors.blueGrey),
+                    style: Theme.of(context).textTheme.bodyText1,
                     decoration: const InputDecoration(
-                      fillColor: Colors.white,
-                      filled: true,
-                      border: UnderlineInputBorder(),
-                      labelText: 'Confirm password',
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 75, vertical: 8),
-                  child: TextFormField(
-                    style: const TextStyle(color: Colors.blueGrey),
-                    decoration: const InputDecoration(
+                      labelStyle: TextStyle(fontFamily: "Mantinia"),
                       fillColor: Colors.white,
                       filled: true,
                       border: UnderlineInputBorder(),
                       labelText: 'Bio',
+                      hintText: 'Briefly describe yourself',
                     ),
                     onSaved: (value) => newUser.bio = value!,
                   ),
@@ -167,24 +159,28 @@ class _RegisterForm extends State<Register> {
               // const FormButton(buttonText: "REGISTER", route: "/REGISTER"),
               ElevatedButton(
                   onPressed: submitRegister, child: const Text("REGISTER")),
-              RichText(
-                text: TextSpan(
-                  children: [
-                    const TextSpan(
-                      text: "You already have an account ?",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    TextSpan(
-                      text: ' log in',
-                      style: const TextStyle(color: Colors.blueAccent),
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = () {
-                          Navigator.pushNamed(context, "/login");
-                        },
-                    ),
-                  ],
-                ),
-              )
+              Padding(
+               padding :const EdgeInsets.only(top:20),
+                child: RichText(
+                  text: TextSpan(
+                    children: [
+                      const TextSpan(
+                        text: "You already have an account ?",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      TextSpan(
+                        text: ' log in',
+                        style: const TextStyle(color: Colors.blueAccent),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            Navigator.pushNamed(context, "/login");
+                          },
+                      ),
+                    ],
+                  ),
+                )
+              ),
+
             ],
           )
         ],

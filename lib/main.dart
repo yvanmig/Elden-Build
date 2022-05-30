@@ -47,7 +47,7 @@ class _MyApp extends State<MyApp> {
             primarySwatch: Colors.blue,
             fontFamily: 'Mantinia',
             textTheme: const TextTheme(
-              bodyText2: TextStyle(color: Colors.white),
+              bodyText1: TextStyle(color: Colors.black, fontFamily: 'Garamond'),
             ),
             tabBarTheme: const TabBarTheme(
                 labelColor: Colors.white,
