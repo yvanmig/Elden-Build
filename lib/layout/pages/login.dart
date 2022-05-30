@@ -1,12 +1,45 @@
+import 'package:elden_build/models/user_model.dart';
+import 'package:elden_build/models/user_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 //import 'package:google_fonts/google_fonts.dart';
 import 'package:elden_build/layout/layout.dart';
+import 'package:provider/provider.dart';
 
-class Login extends StatelessWidget {
+class Login extends StatefulWidget {
   static const String routeName = '/login';
-  const Login();
+
+  const Login({Key? key}) : super(key: key);
+
+  @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
+  final GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
+  late User user;
+  bool _passwordVisible = false;
+  String errorMessage = " ";
+
+  @override
+  void initState() {
+    user = User(email: " ", pass: " ", photo: " ", pseudo: " ", bio: " ");
+    super.initState();
+  }
+
+  Future<void> logUser() async {
+    String rep =
+        await Provider.of<UserProvider>(context, listen: false).logUser(user);
+
+    if (rep == "200") {
+      Navigator.pushNamed(context, Profile.routeName);
+    } else {
+      setState(() {
+        errorMessage = rep;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,39 +61,49 @@ class Login extends StatelessWidget {
                   style: TextStyle(color: Colors.white, fontSize: 30)),
             ],
           ),
+          Form(
+              key: loginFormKey,
+              child: Column(
+                children: [
+                  Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 75, vertical: 8),
+                    child: TextFormField(
+                      style: const TextStyle(color: Colors.white),
+                      decoration: const InputDecoration(
+                        fillColor: Colors.white,
+                        filled: true,
+                        border: UnderlineInputBorder(),
+                        labelText: 'Enter your username',
+                      ),
+                      onSaved: (value) => user.email = value!,
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 75, vertical: 8),
+                    child: TextFormField(
+                      style: const TextStyle(color: Colors.white),
+                      decoration: const InputDecoration(
+                        fillColor: Colors.white,
+                        filled: true,
+                        border: UnderlineInputBorder(),
+                        labelText: 'Password',
+                      ),
+                      onSaved: (value) => user.pass = value!,
+                    ),
+                  ),
+                ],
+              )),
           Column(
             children: [
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 75, vertical: 8),
-                child: TextFormField(
-                  style: const TextStyle(color: Colors.white),
-                  decoration: const InputDecoration(
-                    fillColor: Colors.white,
-                    filled: true,
-                    border: UnderlineInputBorder(),
-                    labelText: 'Enter your username',
-                  ),
-                ),
+              ElevatedButton(
+                onPressed: () {
+                  loginFormKey.currentState?.save();
+                  logUser();
+                },
+                child: const Text("SE CONNECTER"),
               ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 75, vertical: 8),
-                child: TextFormField(
-                  style: const TextStyle(color: Colors.white),
-                  decoration: const InputDecoration(
-                    fillColor: Colors.white,
-                    filled: true,
-                    border: UnderlineInputBorder(),
-                    labelText: 'Password',
-                  ),
-                ),
-              ),
-            ],
-          ),
-          Column(
-            children: [
-              const FormButton(buttonText: "LOG IN", route: "/login"),
               RichText(
                 text: TextSpan(
                   children: [
