@@ -84,6 +84,7 @@ class _LoginState extends State<Login> {
                     padding:
                         const EdgeInsets.symmetric(horizontal: 75, vertical: 8),
                     child: TextFormField(
+                      obscureText: true,
                       style: Theme.of(context).textTheme.bodyText1,
                       decoration: const InputDecoration(
                         labelStyle: TextStyle(fontFamily: "Mantinia"),

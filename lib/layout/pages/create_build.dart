@@ -7,6 +7,7 @@ import 'package:elden_build/models/build_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+
 //import 'package:google_fonts/google_fonts.dart';
 import 'package:elden_build/layout/layout.dart';
 
@@ -49,20 +50,19 @@ class _CreateBuildForm extends State<CreateBuild> {
   var spellDropDownValue2;
   var spellDropDownValue3;
   List<Equipment2> spells = [
-    Equipment2(id: 1, name: "Elden Stars"),
-    Equipment2(id: 12, name: "Big hurty laser"),
-    Equipment2(id: 13, name: "Lightning Spear"),
-    Equipment2(id: 14, name: "Golden Vow"),
+    Equipment2(id: 1, name: "Elden stars"),
+    Equipment2(id: 12, name: "Moon blade"),
+    Equipment2(id: 13, name: "Azur comet"),
+    Equipment2(id: 14, name: "Lightning spear"),
   ];
 
   var talismanDropDownValue1;
   var talismanDropDownValue2;
   var talismanDropDownValue3;
   List<Equipment2> talismans = [
-    Equipment2(id: 1, name: "Faith canvas"),
-    Equipment2(id: 12, name: "Rot idol"),
+    Equipment2(id: 1, name: "Flock canvas"),
+    Equipment2(id: 12, name: "Jump attack"),
     Equipment2(id: 13, name: "Dragoncrest shield"),
-    Equipment2(id: 14, name: "Blood Lord insignia"),
   ];
 
   late Build newBuild;
@@ -163,8 +163,9 @@ class _CreateBuildForm extends State<CreateBuild> {
                         const EdgeInsets.symmetric(horizontal: 75, vertical: 8),
                     child: SizedBox(
                       child: TextFormField(
-                        style: const TextStyle(color: Colors.blueGrey),
+                        style: Theme.of(context).textTheme.bodyText1,
                         decoration: const InputDecoration(
+                          labelStyle: TextStyle(fontFamily: "Mantinia"),
                           fillColor: Colors.white,
                           filled: true,
                           border: UnderlineInputBorder(),
@@ -180,8 +181,9 @@ class _CreateBuildForm extends State<CreateBuild> {
                         const EdgeInsets.symmetric(horizontal: 75, vertical: 8),
                     child: SizedBox(
                       child: TextFormField(
-                        style: const TextStyle(color: Colors.blueGrey),
+                        style: Theme.of(context).textTheme.bodyText1,
                         decoration: const InputDecoration(
+                          labelStyle: TextStyle(fontFamily: "Mantinia"),
                           fillColor: Colors.white,
                           filled: true,
                           border: UnderlineInputBorder(),
@@ -247,182 +249,208 @@ class _CreateBuildForm extends State<CreateBuild> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          SizedBox(
-                            width: 120,
-                            height: 40,
-                            child: TextFormField(
-                              textAlign: TextAlign.end,
-                              style: const TextStyle(color: Colors.blueGrey, fontSize: 16),
-                              keyboardType: TextInputType.number,
-                              inputFormatters: <TextInputFormatter>[
-                                FilteringTextInputFormatter.allow(
-                                    RegExp(r'[0-9]')),
-                              ],
-                              onSaved: (value) => newBuild.strength = value!,
-                              decoration: const InputDecoration(
-                                fillColor: Colors.white,
-                                filled: true,
-                                border: UnderlineInputBorder(),
-                                labelText: 'Strength',
-                                hintText: '0',
-                                labelStyle: TextStyle(fontSize: 14)
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 15.0),
+                            child: SizedBox(
+                              width: 120,
+                              height: 40,
+                              child: TextFormField(
+                                textAlign: TextAlign.end,
+                                style: const TextStyle(
+                                    color: Colors.blueGrey, fontSize: 16),
+                                keyboardType: TextInputType.number,
+                                inputFormatters: <TextInputFormatter>[
+                                  FilteringTextInputFormatter.allow(
+                                      RegExp(r'[0-9]')),
+                                ],
+                                onSaved: (value) => newBuild.strength = value!,
+                                decoration: const InputDecoration(
+                                    fillColor: Colors.white,
+                                    filled: true,
+                                    border: UnderlineInputBorder(),
+                                    labelText: 'Strength',
+                                    hintText: '0',
+                                    labelStyle: TextStyle(fontSize: 14)),
                               ),
                             ),
                           ),
-                          SizedBox(
-                            width: 120,
-                            height: 40,
-                            child: TextFormField(
-                              textAlign: TextAlign.end,
-                              style: const TextStyle(color: Colors.blueGrey, fontSize: 16),
-                              keyboardType: TextInputType.number,
-                              inputFormatters: <TextInputFormatter>[
-                                FilteringTextInputFormatter.allow(
-                                    RegExp(r'[0-9]')),
-                              ],
-                              onSaved: (value) =>
-                                  newBuild.intelligence = value!,
-                              decoration: const InputDecoration(
-                                fillColor: Colors.white,
-                                filled: true,
-                                border: UnderlineInputBorder(),
-                                labelText: 'Intelligence',
-                                hintText: '0',
+                          Padding(
+                              padding: const EdgeInsets.only(bottom: 15.0),
+                              child: SizedBox(
+                                width: 120,
+                                height: 40,
+                                child: TextFormField(
+                                  textAlign: TextAlign.end,
+                                  style: const TextStyle(
+                                      color: Colors.blueGrey, fontSize: 16),
+                                  keyboardType: TextInputType.number,
+                                  inputFormatters: <TextInputFormatter>[
+                                    FilteringTextInputFormatter.allow(
+                                        RegExp(r'[0-9]')),
+                                  ],
+                                  onSaved: (value) =>
+                                      newBuild.intelligence = value!,
+                                  decoration: const InputDecoration(
+                                    fillColor: Colors.white,
+                                    filled: true,
+                                    border: UnderlineInputBorder(),
+                                    labelText: 'Intelligence',
+                                    hintText: '0',
+                                  ),
+                                ),
+                              )),
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 15.0),
+                            child: SizedBox(
+                              width: 120,
+                              height: 40,
+                              child: TextFormField(
+                                textAlign: TextAlign.end,
+                                style: const TextStyle(
+                                    color: Colors.blueGrey, fontSize: 16),
+                                keyboardType: TextInputType.number,
+                                inputFormatters: <TextInputFormatter>[
+                                  FilteringTextInputFormatter.allow(
+                                      RegExp(r'[0-9]')),
+                                ],
+                                onSaved: (value) => newBuild.dexterity = value!,
+                                decoration: const InputDecoration(
+                                  fillColor: Colors.white,
+                                  filled: true,
+                                  border: UnderlineInputBorder(),
+                                  labelText: 'Dexterity',
+                                  hintText: '0',
+                                ),
                               ),
                             ),
                           ),
-                          SizedBox(
-                            width: 120,
-                            height: 40,
-                            child: TextFormField(
-                              textAlign: TextAlign.end,
-                              style: const TextStyle(color: Colors.blueGrey, fontSize: 16),
-                              keyboardType: TextInputType.number,
-                              inputFormatters: <TextInputFormatter>[
-                                FilteringTextInputFormatter.allow(
-                                    RegExp(r'[0-9]')),
-                              ],
-                              onSaved: (value) => newBuild.dexterity = value!,
-                              decoration: const InputDecoration(
-                                fillColor: Colors.white,
-                                filled: true,
-                                border: UnderlineInputBorder(),
-                                labelText: 'Dexterity',
-                                hintText: '0',
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            width: 120,
-                            height: 40,
-                            child: TextFormField(
-                              textAlign: TextAlign.end,
-                              style: const TextStyle(color: Colors.blueGrey, fontSize: 16),
-                              keyboardType: TextInputType.number,
-                              inputFormatters: <TextInputFormatter>[
-                                FilteringTextInputFormatter.allow(
-                                    RegExp(r'[0-9]')),
-                              ],
-                              onSaved: (value) => newBuild.endurence = value!,
-                              decoration: const InputDecoration(
-                                fillColor: Colors.white,
-                                filled: true,
-                                border: UnderlineInputBorder(),
-                                labelText: 'Endurance',
-                                hintText: '0',
-                              ),
-                            ),
-                          ),
+                          Padding(
+                              padding: const EdgeInsets.only(bottom: 15.0),
+                              child: SizedBox(
+                                width: 120,
+                                height: 40,
+                                child: TextFormField(
+                                  textAlign: TextAlign.end,
+                                  style: const TextStyle(
+                                      color: Colors.blueGrey, fontSize: 16),
+                                  keyboardType: TextInputType.number,
+                                  inputFormatters: <TextInputFormatter>[
+                                    FilteringTextInputFormatter.allow(
+                                        RegExp(r'[0-9]')),
+                                  ],
+                                  onSaved: (value) =>
+                                      newBuild.endurence = value!,
+                                  decoration: const InputDecoration(
+                                    fillColor: Colors.white,
+                                    filled: true,
+                                    border: UnderlineInputBorder(),
+                                    labelText: 'Endurance',
+                                    hintText: '0',
+                                  ),
+                                ),
+                              )),
                         ],
                       ),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          SizedBox(
-                            width: 120,
-                            height: 40,
-                            child: TextFormField(
-                              textAlign: TextAlign.end,
-                              style: const TextStyle(color: Colors.blueGrey, fontSize: 16),
-                              keyboardType: TextInputType.number,
-                              inputFormatters: <TextInputFormatter>[
-                                FilteringTextInputFormatter.allow(
-                                    RegExp(r'[0-9]')),
-                              ],
-                              onSaved: (value) => newBuild.faith = value!,
-                              decoration: const InputDecoration(
-                                fillColor: Colors.white,
-                                filled: true,
-                                border: UnderlineInputBorder(),
-                                labelText: 'Faith',
-                                hintText: '0',
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            width: 120,
-                            height: 40,
-                            child: TextFormField(
-                              textAlign: TextAlign.end,
-                              style: const TextStyle(color: Colors.blueGrey, fontSize: 16),
-                              keyboardType: TextInputType.number,
-                              inputFormatters: <TextInputFormatter>[
-                                FilteringTextInputFormatter.allow(
-                                    RegExp(r'[0-9]')),
-                              ],
-                              onSaved: (value) => newBuild.mind = value!,
-                              decoration: const InputDecoration(
-                                fillColor: Colors.white,
-                                filled: true,
-                                border: UnderlineInputBorder(),
-                                labelText: 'Mind',
-                                hintText: '0',
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            width: 120,
-                            height: 40,
-                            child: TextFormField(
-                              textAlign: TextAlign.end,
-                              style: const TextStyle(color: Colors.blueGrey, fontSize: 16),
-                              keyboardType: TextInputType.number,
-                              inputFormatters: <TextInputFormatter>[
-                                FilteringTextInputFormatter.allow(
-                                    RegExp(r'[0-9]')),
-                              ],
-                              onSaved: (value) => newBuild.vigor = value!,
-                              decoration: const InputDecoration(
-                                fillColor: Colors.white,
-                                filled: true,
-                                border: UnderlineInputBorder(),
-                                labelText: 'Vigor',
-                                hintText: '0',
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            width: 120,
-                            height: 40,
-                            child: TextFormField(
-                              textAlign: TextAlign.end,
-                              style: const TextStyle(color: Colors.blueGrey, fontSize: 16),
-                              keyboardType: TextInputType.number,
-                              inputFormatters: <TextInputFormatter>[
-                                FilteringTextInputFormatter.allow(
-                                    RegExp(r'[0-9]')),
-                              ],
-                              onSaved: (value) => newBuild.arcane = value!,
-                              decoration: const InputDecoration(
-                                fillColor: Colors.white,
-                                filled: true,
-                                border: UnderlineInputBorder(),
-                                labelText: 'Arcane',
-                                hintText: '0',
-                              ),
-                            ),
-                          ),
+                          Padding(
+                              padding: const EdgeInsets.only(bottom: 15.0),
+                              child: SizedBox(
+                                width: 120,
+                                height: 40,
+                                child: TextFormField(
+                                  textAlign: TextAlign.end,
+                                  style: const TextStyle(
+                                      color: Colors.blueGrey, fontSize: 16),
+                                  keyboardType: TextInputType.number,
+                                  inputFormatters: <TextInputFormatter>[
+                                    FilteringTextInputFormatter.allow(
+                                        RegExp(r'[0-9]')),
+                                  ],
+                                  onSaved: (value) => newBuild.faith = value!,
+                                  decoration: const InputDecoration(
+                                    fillColor: Colors.white,
+                                    filled: true,
+                                    border: UnderlineInputBorder(),
+                                    labelText: 'Faith',
+                                    hintText: '0',
+                                  ),
+                                ),
+                              )),
+                          Padding(
+                              padding: const EdgeInsets.only(bottom: 15.0),
+                              child: SizedBox(
+                                width: 120,
+                                height: 40,
+                                child: TextFormField(
+                                  textAlign: TextAlign.end,
+                                  style: const TextStyle(
+                                      color: Colors.blueGrey, fontSize: 16),
+                                  keyboardType: TextInputType.number,
+                                  inputFormatters: <TextInputFormatter>[
+                                    FilteringTextInputFormatter.allow(
+                                        RegExp(r'[0-9]')),
+                                  ],
+                                  onSaved: (value) => newBuild.mind = value!,
+                                  decoration: const InputDecoration(
+                                    fillColor: Colors.white,
+                                    filled: true,
+                                    border: UnderlineInputBorder(),
+                                    labelText: 'Mind',
+                                    hintText: '0',
+                                  ),
+                                ),
+                              )),
+                          Padding(
+                              padding: const EdgeInsets.only(bottom: 15.0),
+                              child: SizedBox(
+                                width: 120,
+                                height: 40,
+                                child: TextFormField(
+                                  textAlign: TextAlign.end,
+                                  style: const TextStyle(
+                                      color: Colors.blueGrey, fontSize: 16),
+                                  keyboardType: TextInputType.number,
+                                  inputFormatters: <TextInputFormatter>[
+                                    FilteringTextInputFormatter.allow(
+                                        RegExp(r'[0-9]')),
+                                  ],
+                                  onSaved: (value) => newBuild.vigor = value!,
+                                  decoration: const InputDecoration(
+                                    fillColor: Colors.white,
+                                    filled: true,
+                                    border: UnderlineInputBorder(),
+                                    labelText: 'Vigor',
+                                    hintText: '0',
+                                  ),
+                                ),
+                              )),
+                          Padding(
+                              padding: const EdgeInsets.only(bottom: 15.0),
+                              child: SizedBox(
+                                width: 120,
+                                height: 40,
+                                child: TextFormField(
+                                  textAlign: TextAlign.end,
+                                  style: const TextStyle(
+                                      color: Colors.blueGrey, fontSize: 16),
+                                  keyboardType: TextInputType.number,
+                                  inputFormatters: <TextInputFormatter>[
+                                    FilteringTextInputFormatter.allow(
+                                        RegExp(r'[0-9]')),
+                                  ],
+                                  onSaved: (value) => newBuild.arcane = value!,
+                                  decoration: const InputDecoration(
+                                    fillColor: Colors.white,
+                                    filled: true,
+                                    border: UnderlineInputBorder(),
+                                    labelText: 'Arcane',
+                                    hintText: '0',
+                                  ),
+                                ),
+                              )),
                         ],
                       ),
                     ],
@@ -620,9 +648,6 @@ class _CreateBuildForm extends State<CreateBuild> {
                       top: BorderSide(
                           width: 0.8,
                           color: Color.fromRGBO(160, 141, 106, 1.0)),
-                      bottom: BorderSide(
-                          width: 0.8,
-                          color: Color.fromRGBO(160, 141, 106, 1.0)),
                     )),
                     child: Column(
                       children: [
@@ -679,7 +704,6 @@ class _CreateBuildForm extends State<CreateBuild> {
                             );
                           }).toList(),
                         ),
-
                         DropdownButton<String>(
                           hint: const Text("(Optional) Select a talisman",
                               style: const TextStyle(color: Colors.white)),
@@ -714,15 +738,15 @@ class _CreateBuildForm extends State<CreateBuild> {
           Column(
             children: [
               ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  alignment: Alignment.center,
-                  primary: Color.fromRGBO(160, 141, 106, 1.0),
-                  padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-                  textStyle: TextStyle(
-                    fontFamily: 'Mantinia',
-                    fontSize: 30)
-                ),
-                onPressed: submitNewBuild, child: const Text("Save build")),
+                  style: ElevatedButton.styleFrom(
+                      alignment: Alignment.center,
+                      primary: Color.fromRGBO(160, 141, 106, 1.0),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+                      textStyle:
+                          TextStyle(fontFamily: 'Mantinia', fontSize: 30)),
+                  onPressed: submitNewBuild,
+                  child: const Text("Save build")),
             ],
           ),
         ],

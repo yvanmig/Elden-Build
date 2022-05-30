@@ -59,11 +59,9 @@ class Profile extends StatefulWidget {
           backgroundColor: Colors.black,
           appBar: const CustomAppBar(),
           drawer: const DrawerMenu(),
-          body: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
+          body:
               Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                 _path == "" ? Image.asset("img/logo.png", width: 190, height: 190) :
                 Image.file(
@@ -95,13 +93,19 @@ class Profile extends StatefulWidget {
                       _showOptions(context);
                     },
                   ),
-                  Column(children: [
-                    ProfileRow(rowTitle: "Pseudo", rowData: "user.pseudo"),
-                    ProfileRowDivider(),
-                    ProfileRow(rowTitle: "Email", rowData: "user.email"),
-                    ProfileRowDivider(),
-                  ])
-                ],
+              Padding(
+                padding :const EdgeInsets.only(top:40),
+                child:
+                  Column(
+                      children: [
+                        ProfileRow(rowTitle: "Pseudo", rowData: "user.pseudo"),
+                        ProfileRowDivider(),
+                        ProfileRow(rowTitle: "Email", rowData: "user.email"),
+                        ProfileRowDivider(),
+                    ]
+                  )
+              ),
+            ],
               )
 /*              Column(
                   children: users.map((user) {
@@ -136,8 +140,6 @@ class Profile extends StatefulWidget {
                           ])
                         ]));
                   }).toList())*/
-            ],
-          )
       );
     }
   }
