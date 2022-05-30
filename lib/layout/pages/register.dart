@@ -46,6 +46,7 @@ class _RegisterForm extends State<Register> {
           ..removeCurrentSnackBar()
           ..showSnackBar(
               SnackBar(content: Text("${newUser.pseudo} a été ajouté !")));
+        Navigator.pushNamed(context, Login.routeName);
       }
     } catch (e) {
       print("Erreur, votre profil n'est pas créé !");
@@ -160,27 +161,25 @@ class _RegisterForm extends State<Register> {
               ElevatedButton(
                   onPressed: submitRegister, child: const Text("REGISTER")),
               Padding(
-               padding :const EdgeInsets.only(top:20),
-                child: RichText(
-                  text: TextSpan(
-                    children: [
-                      const TextSpan(
-                        text: "You already have an account ?",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      TextSpan(
-                        text: ' log in',
-                        style: const TextStyle(color: Colors.blueAccent),
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () {
-                            Navigator.pushNamed(context, "/login");
-                          },
-                      ),
-                    ],
-                  ),
-                )
-              ),
-
+                  padding: const EdgeInsets.only(top: 20),
+                  child: RichText(
+                    text: TextSpan(
+                      children: [
+                        const TextSpan(
+                          text: "You already have an account ?",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        TextSpan(
+                          text: ' log in',
+                          style: const TextStyle(color: Colors.blueAccent),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              Navigator.pushNamed(context, "/login");
+                            },
+                        ),
+                      ],
+                    ),
+                  )),
             ],
           )
         ],

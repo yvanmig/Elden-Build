@@ -1,4 +1,5 @@
 import 'package:elden_build/layout/layout.dart';
+import 'package:elden_build/main.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:collection';
@@ -50,6 +51,7 @@ class UserProvider with ChangeNotifier {
       Map<String, dynamic> temp = json.decode(response.body);
 
       if (response.statusCode == 200) {
+        MyApp.currentUser = User.fromJson(temp['user']);
         return ("200");
       } else {
         return (temp['error']);
