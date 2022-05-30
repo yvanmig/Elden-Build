@@ -1,4 +1,5 @@
 import 'package:elden_build/main.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
@@ -19,6 +20,8 @@ class BuildCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String thumbnailImage = _getBuildThumbnailFromStat(buildStats);
+
     return GestureDetector(
       onTap: () {
         Navigator.pushNamed(context, "/build-page",
@@ -30,39 +33,65 @@ class BuildCard extends StatelessWidget {
         child: Card(
           elevation: 0,
           margin: const EdgeInsets.all(20.0),
-          color: Color.fromRGBO(160, 141, 106, 1.0),
+          color: const Color.fromRGBO(160, 141, 106, 1.0),
           child: Padding(
               padding: const EdgeInsets.all(5),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Column(
                     children: [
-                      Image(image: NetworkImage(buildImage)),
-                      Text(
-                        buildStats,
-                        style: TextStyle(color: Colors.white),
-                      )
-                    ],
-                  ),
-                  Column(
-                    children: [
                       Text(
                         buildTitle,
-                        style: TextStyle(color: Colors.white),
+                        style: const TextStyle(color: Colors.white),
+                      ),
+                      Container (
+                        width: 120,
+                        height: 90,
+                        child: Image(image: NetworkImage(thumbnailImage)),
                       ),
                       Text(
-                        buildDescription,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(color: Colors.white),
+                        buildStats,
+                        style: const TextStyle(color: Colors.white),
                       )
                     ],
                   ),
+                  Flexible(
+                    child: Container(
+                      padding: const EdgeInsets.only(right: 13.0),
+                      child: Text(
+                        buildDescription,
+                        softWrap: true,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          fontSize: 13.0,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
-              )),
+              ),
+          ),
         ),
       ),
     );
+  }
+}
+
+String _getBuildThumbnailFromStat(String stat) {
+  if(stat.contains("STR")) {
+
+    return "img/strength.jpg";
+  } else if(stat.contains("INT")) {
+
+    return "img/intelligence.png";
+  } else if(stat.contains("DEX")) {
+
+    return "img/dexterity.jpg";
+  } else {
+
+    return "img/faith.jpg";
   }
 }
