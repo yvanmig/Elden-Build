@@ -59,4 +59,21 @@ class UserProvider with ChangeNotifier {
       rethrow;
     }
   }
+
+  Future<void> userUpdate(User user, String id) async {
+    try {
+      http.Response response = await http.patch(
+        Uri.parse('$host/api/update-user/' + id),
+        body: json.encode(user.toJson()),
+        headers: {'Content-type': 'application/json'},
+      );
+      Map<String, dynamic> temp = json.decode(response.body);
+      if (response.statusCode == 200) {
+        MyApp.currentUser = User.fromJson(temp);
+      }
+      notifyListeners();
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

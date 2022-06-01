@@ -118,6 +118,27 @@ app.post("/api/register", async (req, res) => {
   .catch(error => res.status(500).json({error: error}));
 });
 
+app.patch("/api/update-user/:id", async (req, res) => {
+  try {
+    const id = new ObjectId(req.params.id);
+    const user = await User.findOne({ _id: id });
+  
+    if (req.body.pseudo) {
+      user.pseudo = req.body.pseudo
+    }
+    if (req.body.email) {
+      user.email = req.body.email
+    }
+    if (req.body.bio) {
+      user.bio = req.body.bio
+    }  
+    await user.save();
+    res.status(200).json(user)
+  } catch {
+    res.status(404)
+  }
+});
+
 //Add new build
 app.post("/api/addbuild", async (req, res) => {
   try {
