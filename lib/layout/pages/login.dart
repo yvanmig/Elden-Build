@@ -75,7 +75,7 @@ class _LoginState extends State<Login> {
                         fillColor: Colors.white,
                         filled: true,
                         border: UnderlineInputBorder(),
-                        labelText: 'Enter your username',
+                        labelText: 'Enter your email',
                       ),
                       onSaved: (value) => user.email = value!,
                     ),
