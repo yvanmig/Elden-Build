@@ -680,7 +680,7 @@ class _CreateBuildForm extends State<CreateBuild> {
                           }).toList(),
                         ),
                         DropdownButton<String>(
-                          hint: const Text("(Optional) Select a talisman",
+                          hint: const Text("Select a talisman",
                               style: TextStyle(color: Colors.white)),
                           value: talismanDropDownValue2,
                           icon: const Icon(Icons.arrow_downward),
@@ -706,7 +706,7 @@ class _CreateBuildForm extends State<CreateBuild> {
                           }).toList(),
                         ),
                         DropdownButton<String>(
-                          hint: const Text("(Optional) Select a talisman",
+                          hint: const Text("Select a talisman",
                               style: const TextStyle(color: Colors.white)),
                           value: talismanDropDownValue3,
                           icon: const Icon(Icons.arrow_downward),
