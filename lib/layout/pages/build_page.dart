@@ -1,11 +1,6 @@
-import 'package:elden_build/layout/partials/build/equipment.dart';
-import 'package:elden_build/layout/partials/build/stat.dart';
-import 'package:elden_build/main.dart';
 import 'package:elden_build/models/build_model.dart';
 import 'package:elden_build/models/build_provider.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-//import 'package:google_fonts/google_fonts.dart';
 import 'package:elden_build/layout/layout.dart';
 import '../../model/EquipmentModel.dart';
 import 'package:objectid/objectid.dart';
@@ -32,10 +27,10 @@ class BuildPage extends StatelessWidget {
   ];
 
   final List<EquipmentModel> talismans = [
-    EquipmentModel(id: "401", image: "img/equipments/talismans/flock.png", name: "Flock canvas"),
-    EquipmentModel(id: "402", image: "img/equipments/talismans/jump.png", name: "Jump attack"),
-    EquipmentModel(id: "403", image: "img/equipments/talismans/dragon.png", name: "Dragoncrest shield"),
-    EquipmentModel(id: "404", image: "img/equipments/talismans/branch.png", name: "Sacred branch"),
+    EquipmentModel(id: "400", image: "img/equipments/talismans/flock.png", name: "Flock canvas"),
+    EquipmentModel(id: "401", image: "img/equipments/talismans/jump.png", name: "Jump attack"),
+    EquipmentModel(id: "402", image: "img/equipments/talismans/dragon.png", name: "Dragoncrest shield"),
+    EquipmentModel(id: "403", image: "img/equipments/talismans/branch.png", name: "Sacred branch"),
   ];
 
   BuildPage({Key? key, required this.name, this.id}) : super(key: key);
@@ -44,7 +39,6 @@ class BuildPage extends StatelessWidget {
   Widget build(BuildContext context) {
     Provider.of<BuildProvider>(context).getBuild(id as String);
     List<Build> currentBuild = Provider.of<BuildProvider>(context).build;
-    // print(currentBuild);
 
     return Scaffold(
         backgroundColor: Colors.black,
@@ -126,7 +120,7 @@ class BuildPage extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 75),
                         child: Text(currentBuild[0].description,
-                            style: TextStyle(color: Colors.white)),
+                            style: const TextStyle(color: Colors.white)),
                       ),
                     )
                   ],
@@ -146,53 +140,219 @@ class BuildPage extends StatelessWidget {
                                         color:
                                             Color.fromRGBO(160, 141, 106, 1.0),
                                         width: 0.5))),
+
                             child: TabBarView(children: <Widget>[
                               Column(
                                   mainAxisAlignment:
                                       MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: weapons.map((weapon) {
-                                    var equipmentImage = Helpers.findById(weapons, weapon.id).image;
-                                    var imgWeapon = weapons.where((element) => element.id == weapon.id);
-                                    return Equipment(
-                                        name: weapon.name,
-                                        image: equipmentImage);
-                                  }).toList()),
+                                 children: [
+
+                                     Container(
+                                       child:
+                                       currentBuild[0].weapon1 != 0
+                                           ? Equipment(
+                                           name: Helpers.findById(
+                                               weapons,
+                                               currentBuild[0]
+                                                   .weapon1
+                                                   .toString())
+                                               .name,
+                                           image: Helpers.findById(
+                                               weapons,
+                                               currentBuild[0]
+                                                   .weapon1
+                                                   .toString())
+                                               .image)
+                                           : Container()
+                                     ),
+                                     Container(
+                                       child:
+                                       currentBuild[0].weapon2 != 0
+                                           ?
+                                       Equipment(
+                                           name: Helpers.findById(
+                                               weapons,
+                                               currentBuild[0]
+                                                   .weapon2
+                                                   .toString())
+                                               .name,
+                                           image: Helpers.findById(
+                                               weapons,
+                                               currentBuild[0]
+                                                   .weapon2
+                                                   .toString())
+                                               .image)
+                                           : Container()
+                                     ),
+                                     Container(
+                                       child:
+                                       currentBuild[0].weapon3 != 0
+                                           ?
+                                       Equipment(
+                                           name: Helpers.findById(
+                                               weapons,
+                                               currentBuild[0]
+                                                   .weapon3
+                                                   .toString())
+                                               .name,
+                                           image: Helpers.findById(
+                                               weapons,
+                                               currentBuild[0]
+                                                   .weapon3
+                                                   .toString())
+                                               .image)
+                                           : Container()
+                                     ),
+                                   ]
+                              ),
                               Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: spells.map((spell) {
-                                    var equipmentImage = Helpers.findById(spells, spell.id).image;
-                                    return Container(
-                                      child: Equipment(
-                                          name: spell.name,
-                                          image: equipmentImage),
-                                    );
-                                  }).toList()),
+                                  mainAxisAlignment:
+                                  MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+
+                                    Container(
+                                        child:
+                                        currentBuild[0].spell1 != 0
+                                            ? Equipment(
+                                            name: Helpers.findById(
+                                                spells,
+                                                currentBuild[0]
+                                                    .spell1
+                                                    .toString())
+                                                  .name,
+                                            image: Helpers.findById(
+                                                spells,
+                                                currentBuild[0]
+                                                    .spell1
+                                                    .toString())
+                                                .image)
+                                            : Container()
+                                    ),
+                                    Container(
+                                        child:
+                                        currentBuild[0].spell2 != 0
+                                            ?
+                                        Equipment(
+                                            name: Helpers.findById(
+                                                spells,
+                                                currentBuild[0]
+                                                    .spell2
+                                                    .toString())
+                                                .name,
+                                            image: Helpers.findById(
+                                                spells,
+                                                currentBuild[0]
+                                                    .spell2
+                                                    .toString())
+                                                .image)
+                                            : Container()
+                                    ),
+                                    Container(
+                                        child:
+                                        currentBuild[0].spell3 != 0
+                                            ?
+                                        Equipment(
+                                            name: Helpers.findById(
+                                                spells,
+                                                currentBuild[0]
+                                                    .spell3
+                                                    .toString())
+                                                .name,
+                                            image: Helpers.findById(
+                                                spells,
+                                                currentBuild[0]
+                                                    .spell3
+                                                    .toString())
+                                                .image)
+                                            : Container()
+                                    ),
+                                  ]
+                              ),
                               Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: talismans.map((talisman) {
-                                    var equipmentImage = Helpers.findById(talismans, talisman.id).image;
-                                    return Equipment(
-                                        name: talisman.name,
-                                        image:equipmentImage);
-                                  }).toList()),
-                            ])),
-                        Container(
-                          child: TabBar(
-                            tabs: [
-                              const Tab(
-                                child: Text("Weapon"),
+                                  mainAxisAlignment:
+                                  MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+
+                                    Container(
+                                        child:
+                                        currentBuild[0].talisman1 != 0
+                                            ? Equipment(
+                                            name: Helpers.findById(
+                                                talismans,
+                                                currentBuild[0]
+                                                    .talisman1
+                                                    .toString())
+                                                .name,
+                                            image: Helpers.findById(
+                                                talismans,
+                                                currentBuild[0]
+                                                    .talisman1
+                                                    .toString())
+                                                .image)
+                                            : Container()
+                                    ),
+                                    Container(
+                                        child:
+                                        currentBuild[0].talisman2 != 0
+                                            ?
+                                        Equipment(
+                                            name: Helpers.findById(
+                                                talismans,
+                                                currentBuild[0]
+                                                    .talisman2
+                                                    .toString())
+                                                .name,
+                                            image: Helpers.findById(
+                                                talismans,
+                                                currentBuild[0]
+                                                    .talisman2
+                                                    .toString())
+                                                .image)
+                                            : Container()
+                                    ),
+                                    Container(
+                                        child:
+                                        currentBuild[0].talisman3 != 0
+                                            ?
+                                        Equipment(
+                                            name: Helpers.findById(
+                                                talismans,
+                                                currentBuild[0]
+                                                    .talisman3
+                                                    .toString())
+                                                .name,
+                                            image: Helpers.findById(
+                                                talismans,
+                                                currentBuild[0]
+                                                    .talisman3
+                                                    .toString())
+                                                .image)
+                                            : Container()
+                                    ),
+                                  ]
                               ),
-                              const Tab(
-                                child: Text("Spells"),
-                              ),
-                              const Tab(
-                                child: Text("Talismans"),
-                              ),
-                            ],
-                          ),
+                            ]
+                            )
                         ),
-                      ])),
+                        const TabBar(
+                          tabs: [
+                            Tab(
+                              child: Text("Weapon"),
+                            ),
+                            Tab(
+                              child: Text("Spells"),
+                            ),
+                            Tab(
+                              child: Text("Talismans"),
+                            ),
+                          ],
+                        ),
+                      ]
+                  )
+              ),
             ],
           ),
         ));
