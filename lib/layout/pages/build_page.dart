@@ -7,6 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 //import 'package:google_fonts/google_fonts.dart';
 import 'package:elden_build/layout/layout.dart';
+import '../../model/EquipmentModel.dart';
 import 'package:objectid/objectid.dart';
 import 'package:provider/provider.dart';
 
@@ -17,22 +18,24 @@ class BuildPage extends StatelessWidget {
   final String name;
   final String? id;
 
-  final List<Equipment> weapons = [
-    const Equipment(image: "img/equipments/weapons/night_sword.png", name: "Oath Keeper"),
-    const Equipment(image: "img/equipments/weapons/night_sword.png", name: "Sword of night"),
-    const Equipment(image: "img/equipments/weapons/night_sword.png", name: "Sword of magic"),
+  final List<EquipmentModel> weapons = [
+    EquipmentModel(id: "1", image: "img/equipments/weapons/crystal_staff.png", name: "Crystal staff"),
+    EquipmentModel(id: "2", image: "img/equipments/weapons/golden_order_greatsword.png", name: "Golden order greatsword"),
+    EquipmentModel(id: "3", image: "img/equipments/weapons/night_sword.png", name: "Night sword"),
+    EquipmentModel(id: "4", image: "img/equipments/weapons/twinblade.png", name: "Moonblade"),
   ];
-  final List<Equipment> spells = [
-    const Equipment(image: "img/equipments/spells/elden_stars.png", name: "Elden Stars"),
-    const Equipment(image: "img/equipments/spells/elden_stars.png", name: "Big hurty laser"),
-    const Equipment(image: "img/equipments/spells/elden_stars.png", name: "Lightning Spear"),
-    const Equipment(image: "img/equipments/spells/elden_stars.png", name: "Golden Vow"),
+  final List<EquipmentModel> spells = [
+    EquipmentModel(id: "200", image: "img/equipments/spells/elden_stars.png", name: "Elden Stars"),
+    EquipmentModel(id: "201", image: "img/equipments/spells/moonblade.png", name: "Moon blade"),
+    EquipmentModel(id: "202", image: "img/equipments/spells/comet.png", name: "Azur comet"),
+    EquipmentModel(id: "203", image: "img/equipments/spells/lightning_spear.png", name: "Lightning spear"),
   ];
-  final List<Equipment> talismans = [
-    const Equipment(image: "img/equipments/talismans/dragon.png", name: "Dirty tissue"),
-    const Equipment(image: "img/equipments/talismans/dragon.png", name: "Cloth canvas"),
-    const Equipment(image: "img/equipments/talismans/dragon.png", name: "Lightning Spear"),
-    const Equipment(image: "img/equipments/talismans/dragon.png", name: "Cloth canvas"),
+
+  final List<EquipmentModel> talismans = [
+    EquipmentModel(id: "401", image: "img/equipments/talismans/flock.png", name: "Flock canvas"),
+    EquipmentModel(id: "402", image: "img/equipments/talismans/jump.png", name: "Jump attack"),
+    EquipmentModel(id: "403", image: "img/equipments/talismans/dragon.png", name: "Dragoncrest shield"),
+    EquipmentModel(id: "404", image: "img/equipments/talismans/branch.png", name: "Sacred branch"),
   ];
 
   BuildPage({Key? key, required this.name, this.id}) : super(key: key);
@@ -144,57 +147,47 @@ class BuildPage extends StatelessWidget {
                                             Color.fromRGBO(160, 141, 106, 1.0),
                                         width: 0.5))),
                             child: TabBarView(children: <Widget>[
-                              Container(
-                                  child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: weapons.map((weapon) {
-                                        return Container(
-                                          child: Equipment(
-                                              name: weapon.name,
-                                              image: weapon.image),
-                                        );
-                                      }).toList())),
-                              Container(
-                                child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: spells.map((spell) {
-                                      return Container(
-                                        child: Equipment(
-                                            name: spell.name,
-                                            image: spell.image),
-                                      );
-                                    }).toList()),
-                              ),
-                              Container(
-                                child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: talismans.map((talismans) {
-                                      return Container(
-                                        child: Equipment(
-                                            name: talismans.name,
-                                            image: talismans.image),
-                                      );
-                                    }).toList()),
-                              ),
+                              Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: weapons.map((weapon) {
+                                    var equipmentImage = Helpers.findById(weapons, weapon.id).image;
+                                    var imgWeapon = weapons.where((element) => element.id == weapon.id);
+                                    return Equipment(
+                                        name: weapon.name,
+                                        image: equipmentImage);
+                                  }).toList()),
+                              Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: spells.map((spell) {
+                                    var equipmentImage = Helpers.findById(spells, spell.id).image;
+                                    return Container(
+                                      child: Equipment(
+                                          name: spell.name,
+                                          image: equipmentImage),
+                                    );
+                                  }).toList()),
+                              Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: talismans.map((talisman) {
+                                    var equipmentImage = Helpers.findById(talismans, talisman.id).image;
+                                    return Equipment(
+                                        name: talisman.name,
+                                        image:equipmentImage);
+                                  }).toList()),
                             ])),
                         Container(
                           child: TabBar(
                             tabs: [
-                              Tab(
-                                child: Container(
-                                  child: const Text("Weapon"),
-                                ),
+                              const Tab(
+                                child: Text("Weapon"),
                               ),
-                              Tab(
-                                child: Container(
-                                  child: const Text("Spells"),
-                                ),
+                              const Tab(
+                                child: Text("Spells"),
                               ),
-                              Tab(
-                                child: Container(
-                                  child: const Text("Talismans"),
-                                ),
+                              const Tab(
+                                child: Text("Talismans"),
                               ),
                             ],
                           ),
@@ -203,5 +196,12 @@ class BuildPage extends StatelessWidget {
             ],
           ),
         ));
+  }
+}
+class Helpers {
+  static findById(list, String id) {
+    var findById = (obj) => obj.id == id;
+    var result = list.where(findById);
+    return result.length > 0 ? result.first : null;
   }
 }
