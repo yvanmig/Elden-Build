@@ -108,9 +108,15 @@ class _MyApp extends State<MyApp> {
                     return Register();
                   });
                 }
+              case SplashScreen.routeName:
+                {
+                  return MaterialPageRoute(builder: (context) {
+                    return SplashScreen();
+                  });
+                }
             }
           },
-          initialRoute: Login.routeName,
+          initialRoute: SplashScreen.routeName,
           onUnknownRoute: (settings) {
             return MaterialPageRoute(builder: (context) => const NotFound());
           },
