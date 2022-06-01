@@ -3,6 +3,7 @@ import 'dart:js';
 import 'package:elden_build/layout/layout.dart';
 import 'package:elden_build/layout/pages/create_build.dart';
 import 'package:elden_build/models/build_provider.dart';
+import 'package:elden_build/models/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:elden_build/models/user_provider.dart';
@@ -13,6 +14,7 @@ void main() {
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
+  static User? currentUser;
 
   @override
   State<MyApp> createState() => _MyApp();

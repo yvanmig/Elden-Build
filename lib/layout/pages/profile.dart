@@ -1,4 +1,5 @@
 import 'package:elden_build/layout/partials/drawer_menu.dart';
+import 'package:elden_build/main.dart';
 import 'package:flutter/material.dart';
 import 'package:elden_build/layout/layout.dart';
 import 'package:elden_build/models/user_provider.dart';
@@ -13,20 +14,18 @@ class Profile extends StatefulWidget {
 
   @override
   _ProfileState createState() => _ProfileState();
-
 }
-  class _ProfileState extends State<Profile> {
 
+class _ProfileState extends State<Profile> {
   String _path = "";
 
   void _showPhotoLibrary() async {
-  final file = await ImagePicker.pickImage(source: ImageSource.gallery);
+    final file = await ImagePicker.pickImage(source: ImageSource.gallery);
 
-  //TODO save _path to db when it's updated and use it to fetch image path rather than using the local variable
-  setState(() {
-    _path = file.path;
-  });
-
+    //TODO save _path to db when it's updated and use it to fetch image path rather than using the local variable
+    setState(() {
+      _path = file.path;
+    });
   }
 
   void _showOptions(BuildContext context) {
@@ -84,29 +83,33 @@ class Profile extends StatefulWidget {
                 )
               ),*/
 
-                  TextButton(
-                    child: Text("Change picture", style: TextStyle(color: Colors.white)),
-                    style: TextButton.styleFrom(
-                      backgroundColor: Color.fromRGBO(160, 141, 106, 1.0),
-                    ),
-                    onPressed: () {
-                      _showOptions(context);
-                    },
+                TextButton(
+                  child: Text("Change picture",
+                      style: TextStyle(color: Colors.white)),
+                  style: TextButton.styleFrom(
+                    backgroundColor: Color.fromRGBO(160, 141, 106, 1.0),
                   ),
+                  onPressed: () {
+                    _showOptions(context);
+                  },
+                ),
               Padding(
                 padding :const EdgeInsets.only(top:40),
                 child:
-                  Column(
-                      children: [
-                        ProfileRow(rowTitle: "Pseudo", rowData: "user.pseudo"),
-                        ProfileRowDivider(),
-                        ProfileRow(rowTitle: "Email", rowData: "user.email"),
-                        ProfileRowDivider(),
-                    ]
+                  Column(children: [
+                    ProfileRow(
+                        rowTitle: "Pseudo", rowData: MyApp.currentUser!.pseudo),
+                    ProfileRowDivider(),
+                    ProfileRow(
+                        rowTitle: "Email", rowData: MyApp.currentUser!.email),
+                    ProfileRowDivider(),
+                    ProfileRow(rowTitle: "Bio", rowData: MyApp.currentUser!.bio),
+                    ProfileRowDivider(),
+                  ]
                   )
               ),
-            ],
-              )
+              ],
+            )
 /*              Column(
                   children: users.map((user) {
                     return Container(
@@ -142,4 +145,4 @@ class Profile extends StatefulWidget {
                   }).toList())*/
       );
     }
-  }
+}
