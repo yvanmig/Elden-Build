@@ -40,29 +40,30 @@ class _CreateBuildForm extends State<CreateBuild> {
   var weaponDropDownValue2;
   var weaponDropDownValue3;
   List<Equipment2> weapons = [
-    Equipment2(id: 1, name: "Rusty sword"),
-    Equipment2(id: 12, name: "Envoy horn"),
-    Equipment2(id: 13, name: "Fortissax spear"),
-    Equipment2(id: 14, name: "Great Sword"),
+    Equipment2(id: 1, name: "Crystal staff"),
+    Equipment2(id: 2, name: "Golden order greatsword"),
+    Equipment2(id: 3, name: "Night sword"),
+    Equipment2(id: 4, name: "Moonblade"),
   ];
 
   var spellDropDownValue1;
   var spellDropDownValue2;
   var spellDropDownValue3;
   List<Equipment2> spells = [
-    Equipment2(id: 1, name: "Elden stars"),
-    Equipment2(id: 12, name: "Moon blade"),
-    Equipment2(id: 13, name: "Azur comet"),
-    Equipment2(id: 14, name: "Lightning spear"),
+    Equipment2(id: 200, name: "Elden stars"),
+    Equipment2(id: 201, name: "Moon blade"),
+    Equipment2(id: 202, name: "Azur comet"),
+    Equipment2(id: 203, name: "Lightning spear"),
   ];
 
   var talismanDropDownValue1;
   var talismanDropDownValue2;
   var talismanDropDownValue3;
   List<Equipment2> talismans = [
-    Equipment2(id: 1, name: "Flock canvas"),
-    Equipment2(id: 12, name: "Jump attack"),
-    Equipment2(id: 13, name: "Dragoncrest shield"),
+    Equipment2(id: 400, name: "Flock canvas"),
+    Equipment2(id: 401, name: "Jump attack"),
+    Equipment2(id: 402, name: "Dragoncrest shield"),
+    Equipment2(id: 403, name: "Sacred branch"),
   ];
 
   late Build newBuild;
