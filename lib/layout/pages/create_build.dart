@@ -252,7 +252,8 @@ class _CreateBuildForm extends State<CreateBuild> {
                             height: 40,
                             child: TextFormField(
                               textAlign: TextAlign.end,
-                              style: const TextStyle(color: Colors.blueGrey, fontSize: 16),
+                              style: const TextStyle(
+                                  color: Colors.blueGrey, fontSize: 16),
                               keyboardType: TextInputType.number,
                               inputFormatters: <TextInputFormatter>[
                                 FilteringTextInputFormatter.allow(
@@ -260,13 +261,12 @@ class _CreateBuildForm extends State<CreateBuild> {
                               ],
                               onSaved: (value) => newBuild.strength = value!,
                               decoration: const InputDecoration(
-                                fillColor: Colors.white,
-                                filled: true,
-                                border: UnderlineInputBorder(),
-                                labelText: 'Strength',
-                                hintText: '0',
-                                labelStyle: TextStyle(fontSize: 14)
-                              ),
+                                  fillColor: Colors.white,
+                                  filled: true,
+                                  border: UnderlineInputBorder(),
+                                  labelText: 'Strength',
+                                  hintText: '0',
+                                  labelStyle: TextStyle(fontSize: 14)),
                             ),
                           ),
                           SizedBox(
@@ -274,7 +274,8 @@ class _CreateBuildForm extends State<CreateBuild> {
                             height: 40,
                             child: TextFormField(
                               textAlign: TextAlign.end,
-                              style: const TextStyle(color: Colors.blueGrey, fontSize: 16),
+                              style: const TextStyle(
+                                  color: Colors.blueGrey, fontSize: 16),
                               keyboardType: TextInputType.number,
                               inputFormatters: <TextInputFormatter>[
                                 FilteringTextInputFormatter.allow(
@@ -296,7 +297,8 @@ class _CreateBuildForm extends State<CreateBuild> {
                             height: 40,
                             child: TextFormField(
                               textAlign: TextAlign.end,
-                              style: const TextStyle(color: Colors.blueGrey, fontSize: 16),
+                              style: const TextStyle(
+                                  color: Colors.blueGrey, fontSize: 16),
                               keyboardType: TextInputType.number,
                               inputFormatters: <TextInputFormatter>[
                                 FilteringTextInputFormatter.allow(
@@ -317,7 +319,8 @@ class _CreateBuildForm extends State<CreateBuild> {
                             height: 40,
                             child: TextFormField(
                               textAlign: TextAlign.end,
-                              style: const TextStyle(color: Colors.blueGrey, fontSize: 16),
+                              style: const TextStyle(
+                                  color: Colors.blueGrey, fontSize: 16),
                               keyboardType: TextInputType.number,
                               inputFormatters: <TextInputFormatter>[
                                 FilteringTextInputFormatter.allow(
@@ -344,7 +347,8 @@ class _CreateBuildForm extends State<CreateBuild> {
                             height: 40,
                             child: TextFormField(
                               textAlign: TextAlign.end,
-                              style: const TextStyle(color: Colors.blueGrey, fontSize: 16),
+                              style: const TextStyle(
+                                  color: Colors.blueGrey, fontSize: 16),
                               keyboardType: TextInputType.number,
                               inputFormatters: <TextInputFormatter>[
                                 FilteringTextInputFormatter.allow(
@@ -365,7 +369,8 @@ class _CreateBuildForm extends State<CreateBuild> {
                             height: 40,
                             child: TextFormField(
                               textAlign: TextAlign.end,
-                              style: const TextStyle(color: Colors.blueGrey, fontSize: 16),
+                              style: const TextStyle(
+                                  color: Colors.blueGrey, fontSize: 16),
                               keyboardType: TextInputType.number,
                               inputFormatters: <TextInputFormatter>[
                                 FilteringTextInputFormatter.allow(
@@ -386,7 +391,8 @@ class _CreateBuildForm extends State<CreateBuild> {
                             height: 40,
                             child: TextFormField(
                               textAlign: TextAlign.end,
-                              style: const TextStyle(color: Colors.blueGrey, fontSize: 16),
+                              style: const TextStyle(
+                                  color: Colors.blueGrey, fontSize: 16),
                               keyboardType: TextInputType.number,
                               inputFormatters: <TextInputFormatter>[
                                 FilteringTextInputFormatter.allow(
@@ -407,7 +413,8 @@ class _CreateBuildForm extends State<CreateBuild> {
                             height: 40,
                             child: TextFormField(
                               textAlign: TextAlign.end,
-                              style: const TextStyle(color: Colors.blueGrey, fontSize: 16),
+                              style: const TextStyle(
+                                  color: Colors.blueGrey, fontSize: 16),
                               keyboardType: TextInputType.number,
                               inputFormatters: <TextInputFormatter>[
                                 FilteringTextInputFormatter.allow(
@@ -679,7 +686,6 @@ class _CreateBuildForm extends State<CreateBuild> {
                             );
                           }).toList(),
                         ),
-
                         DropdownButton<String>(
                           hint: const Text("(Optional) Select a talisman",
                               style: const TextStyle(color: Colors.white)),
@@ -714,15 +720,15 @@ class _CreateBuildForm extends State<CreateBuild> {
           Column(
             children: [
               ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  alignment: Alignment.center,
-                  primary: Color.fromRGBO(160, 141, 106, 1.0),
-                  padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-                  textStyle: TextStyle(
-                    fontFamily: 'Mantinia',
-                    fontSize: 30)
-                ),
-                onPressed: submitNewBuild, child: const Text("Save build")),
+                  style: ElevatedButton.styleFrom(
+                      alignment: Alignment.center,
+                      primary: Color.fromRGBO(160, 141, 106, 1.0),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+                      textStyle:
+                          TextStyle(fontFamily: 'Mantinia', fontSize: 30)),
+                  onPressed: submitNewBuild,
+                  child: const Text("Save build")),
             ],
           ),
         ],
