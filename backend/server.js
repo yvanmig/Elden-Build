@@ -6,6 +6,8 @@ const app = express();
 const path = require("path");
 const User = require("./models/user.model");
 const Build = require("./models/build.model");
+const Weapon = require("./models/weapon.model");
+const Spell = require("./models/spell.model");
 const e = require("express");
 const jwt = require('jsonwebtoken');
 
@@ -42,6 +44,34 @@ app.get("/api/users", async (req, res) => {
   }
 });
 
+// Get All Weapons
+app.get("/api/weapons", async (req, res) => {
+  try {
+    const weapons = await Weapon.find({}).exec();
+    res.status(200).json(weapons);
+  } catch (e) {
+    res.status(500).json(e);
+  }
+});
+// Get All Spells
+app.get("/api/spells", async (req, res) => {
+  try {
+    const spells = await Spell.find({}).exec();
+    res.status(200).json(spells);
+  } catch (e) {
+    res.status(500).json(e);
+  }
+});
+// Get All Talismans
+app.get("/api/talismans", async (req, res) => {
+  try {
+    const talismans = await Talisman.find({}).exec();
+    res.status(200).json(talismans);
+  } catch (e) {
+    res.status(500).json(e);
+  }
+});
+
 // Get all build
 app.get("/api/builds", async (req, res) => {
   try {
@@ -58,6 +88,15 @@ app.get("/api/getbuild/:id", async (req, res) => {
    Build.findOne({_id: id}).then(
     (builds) => {
       res.status(200).json({builds})}
+  ).catch(error => res.status(500).json({error: error}));
+});
+
+// Get one build
+app.get("/api/getweapon/:id", async (req, res) => {
+  const id = req.params.id;
+   Weapon.findOne({weapon_id: id}).then(
+    (weapons) => {
+      res.status(200).json({weapons})}
   ).catch(error => res.status(500).json({error: error}));
 });
 
