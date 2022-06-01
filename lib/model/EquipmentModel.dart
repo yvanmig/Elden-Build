@@ -1,7 +1,7 @@
-class Equipement{
-  final int id;
+class EquipmentModel{
+  final String id;
   final String name;
   final String image;
 
-  Equipement({required this.id, required this.name, required this.image});
+  EquipmentModel({required this.id, required this.name, required this.image});
 }
