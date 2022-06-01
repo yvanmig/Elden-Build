@@ -13,21 +13,21 @@ class BuildPage extends StatelessWidget {
   final int id;
 
   final List<Equipment> weapons = [
-    const Equipment(image: "img/sword.png", name: "Oath Keeper"),
-    const Equipment(image: "img/sword.png", name: "Sword of night"),
-    const Equipment(image: "img/sword.png", name: "Sword of magic"),
+    const Equipment(image: "img/equipments/weapons/night_sword.png", name: "Oath Keeper"),
+    const Equipment(image: "img/equipments/weapons/night_sword.png", name: "Sword of night"),
+    const Equipment(image: "img/equipments/weapons/night_sword.png", name: "Sword of magic"),
   ];
   final List<Equipment> spells = [
-    const Equipment(image: "img/sword.png", name: "Elden Stars"),
-    const Equipment(image: "img/sword.png", name: "Big hurty laser"),
-    const Equipment(image: "img/sword.png", name: "Lightning Spear"),
-    const Equipment(image: "img/sword.png", name: "Golden Vow"),
+    const Equipment(image: "img/equipments/spells/elden_stars.png", name: "Elden Stars"),
+    const Equipment(image: "img/equipments/spells/elden_stars.png", name: "Big hurty laser"),
+    const Equipment(image: "img/equipments/spells/elden_stars.png", name: "Lightning Spear"),
+    const Equipment(image: "img/equipments/spells/elden_stars.png", name: "Golden Vow"),
   ];
   final List<Equipment> talismans = [
-    const Equipment(image: "img/sword.png", name: "Dirty tissue"),
-    const Equipment(image: "img/sword.png", name: "Cloth canvas"),
-    const Equipment(image: "img/sword.png", name: "Lightning Spear"),
-    const Equipment(image: "img/sword.png", name: "Cloth canvas"),
+    const Equipment(image: "img/equipments/talismans/dragon.png", name: "Dirty tissue"),
+    const Equipment(image: "img/equipments/talismans/dragon.png", name: "Cloth canvas"),
+    const Equipment(image: "img/equipments/talismans/dragon.png", name: "Lightning Spear"),
+    const Equipment(image: "img/equipments/talismans/dragon.png", name: "Cloth canvas"),
   ];
   final List<Stat> stats = [
     const Stat(value: 37, name: "INT"),
