@@ -67,7 +67,6 @@ class _MyApp extends State<MyApp> {
               case BuildPage.routeName:
                 {
                   final BuildData arguments = settings.arguments as BuildData;
-
                   return MaterialPageRoute(builder: (context) {
                     return BuildPage(name: arguments.name, id: arguments.id);
                   });

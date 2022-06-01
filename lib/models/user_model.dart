@@ -1,4 +1,5 @@
 class User {
+  String? id;
   String pseudo;
   String email;
   String photo;
@@ -6,6 +7,7 @@ class User {
   String pass;
 
   User({
+    this.id,
     required this.pseudo,
     required this.email,
     required this.photo,
@@ -14,7 +16,8 @@ class User {
   });
 
   User.fromJson(Map<String, dynamic> json)
-      : pseudo = json['pseudo'],
+      : id = json['_id'],
+        pseudo = json['pseudo'],
         email = json['email'],
         photo = json['photo'],
         bio = json['bio'],
@@ -22,6 +25,7 @@ class User {
 
   Map<String, dynamic> toJson() {
     return {
+      '_id': id,
       'pseudo': pseudo,
       'email': email,
       'photo': photo,
