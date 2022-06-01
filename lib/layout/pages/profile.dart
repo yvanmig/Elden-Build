@@ -14,6 +14,7 @@ class Profile extends StatefulWidget {
 
   @override
   _ProfileState createState() => _ProfileState();
+
 }
 
 class _ProfileState extends State<Profile> {
@@ -43,33 +44,39 @@ class _ProfileState extends State<Profile> {
                     },
                     leading: Icon(Icons.photo_library),
                     title: Text("Choose from your library",
-                        style: TextStyle(color: Colors.white)))
-              ]));
-        });
+                        style: TextStyle(color: Colors.white))
+                )
+              ]
+              )
+          );
+        }
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    List<User> users = Provider.of<UserProvider>(context).users;
+    List<User> users = Provider
+        .of<UserProvider>(context)
+        .users;
     return Scaffold(
         backgroundColor: Colors.black,
         appBar: const CustomAppBar(),
         drawer: const DrawerMenu(),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Column(
-              children: <Widget>[
-                _path == ""
-                    ? Image.asset("img/logo.png", width: 190, height: 190)
-                    : Image.file(
-                        File(_path),
-                        width: 190,
-                        height: 190,
-                      ),
-                //TODO Use this block to display img with the path stored in db instead of the local variable
-                /*         _path == "" ? Image.asset("img/logo.png", width: 190, height: 190) :
+        body:
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            _path == ""
+                ? Image.asset("img/logo.png", width: 190, height: 190)
+                :
+            Image.file(
+              File(_path),
+              width: 190,
+              height: 190,
+            )
+            ,
+            //TODO Use this block to display img with the path stored in db instead of the local variable
+            /*         _path == "" ? Image.asset("img/logo.png", width: 190, height: 190) :
                   Container(
               width: 190.0,
               height: 190.0,
@@ -82,16 +89,19 @@ class _ProfileState extends State<Profile> {
                 )
               ),*/
 
-                TextButton(
-                  child: Text("Change picture",
-                      style: TextStyle(color: Colors.white)),
-                  style: TextButton.styleFrom(
-                    backgroundColor: Color.fromRGBO(160, 141, 106, 1.0),
-                  ),
-                  onPressed: () {
-                    _showOptions(context);
-                  },
-                ),
+            TextButton(
+              child: Text("Change picture",
+                  style: TextStyle(color: Colors.white)),
+              style: TextButton.styleFrom(
+                backgroundColor: Color.fromRGBO(160, 141, 106, 1.0),
+              ),
+              onPressed: () {
+                _showOptions(context);
+              },
+            ),
+            Padding(
+                padding: const EdgeInsets.only(top: 40),
+                child:
                 Column(children: [
                   ProfileRow(
                       rowTitle: "Pseudo", rowData: MyApp.currentUser!.pseudo),
@@ -99,11 +109,13 @@ class _ProfileState extends State<Profile> {
                   ProfileRow(
                       rowTitle: "Email", rowData: MyApp.currentUser!.email),
                   ProfileRowDivider(),
-                  ProfileRow(rowTitle: "Bio", rowData: MyApp.currentUser!.bio),
+                  ProfileRow(
+                      rowTitle: "Bio", rowData: MyApp.currentUser!.bio),
                   ProfileRowDivider(),
                 ])
-              ],
-            )
+            ),
+          ],
+        )
 /*              Column(
                   children: users.map((user) {
                     return Container(
@@ -137,7 +149,6 @@ class _ProfileState extends State<Profile> {
                           ])
                         ]));
                   }).toList())*/
-          ],
-        ));
+    );
   }
 }

@@ -18,6 +18,7 @@ class Equipment extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Image(
+          width: 75,
           height: 75,
           image: NetworkImage(image),
         ),
