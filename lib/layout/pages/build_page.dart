@@ -3,49 +3,115 @@ import 'package:elden_build/models/build_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:elden_build/layout/layout.dart';
 import '../../model/EquipmentModel.dart';
-import 'package:objectid/objectid.dart';
 import 'package:provider/provider.dart';
 
-class BuildPage extends StatelessWidget {
+class BuildPage extends StatefulWidget {
   static const String routeName = '/build-page';
-  final String buildDescription =
-      "A build using faith and dexterity to annihilate waves of ennemies. May stagger bosses if combined with a high level talisman";
   final String name;
   final String? id;
+  const BuildPage({Key? key, required this.name, this.id}) : super(key: key);
+
+  @override
+  State<BuildPage> createState() => _BuildPage();
+}
+
+class _BuildPage extends State<BuildPage> {
+  late bool _isLoading;
+
+  @override
+  void initState() {
+    _isLoading = true;
+    Future.delayed(
+        const Duration(seconds: 1),
+        () => {
+              setState(() => {_isLoading = false})
+            });
+    super.initState();
+  }
 
   final List<EquipmentModel> weapons = [
-    EquipmentModel(id: "1", image: "img/equipments/weapons/crystal_staff.png", name: "Crystal staff"),
-    EquipmentModel(id: "2", image: "img/equipments/weapons/golden_order_greatsword.png", name: "Golden order greatsword"),
-    EquipmentModel(id: "3", image: "img/equipments/weapons/night_sword.png", name: "Night sword"),
-    EquipmentModel(id: "4", image: "img/equipments/weapons/twinblade.png", name: "Moonblade"),
+    EquipmentModel(
+        id: "1",
+        image: "img/equipments/weapons/crystal_staff.png",
+        name: "Crystal staff"),
+    EquipmentModel(
+        id: "2",
+        image: "img/equipments/weapons/golden_order_greatsword.png",
+        name: "Golden order greatsword"),
+    EquipmentModel(
+        id: "3",
+        image: "img/equipments/weapons/night_sword.png",
+        name: "Night sword"),
+    EquipmentModel(
+        id: "4",
+        image: "img/equipments/weapons/twinblade.png",
+        name: "Moonblade"),
   ];
   final List<EquipmentModel> spells = [
-    EquipmentModel(id: "200", image: "img/equipments/spells/elden_stars.png", name: "Elden Stars"),
-    EquipmentModel(id: "201", image: "img/equipments/spells/moonblade.png", name: "Moon blade"),
-    EquipmentModel(id: "202", image: "img/equipments/spells/comet.png", name: "Azur comet"),
-    EquipmentModel(id: "203", image: "img/equipments/spells/lightning_spear.png", name: "Lightning spear"),
+    EquipmentModel(
+        id: "200",
+        image: "img/equipments/spells/elden_stars.png",
+        name: "Elden Stars"),
+    EquipmentModel(
+        id: "201",
+        image: "img/equipments/spells/moonblade.png",
+        name: "Moon blade"),
+    EquipmentModel(
+        id: "202",
+        image: "img/equipments/spells/comet.png",
+        name: "Azur comet"),
+    EquipmentModel(
+        id: "203",
+        image: "img/equipments/spells/lightning_spear.png",
+        name: "Lightning spear"),
   ];
 
   final List<EquipmentModel> talismans = [
-    EquipmentModel(id: "400", image: "img/equipments/talismans/flock.png", name: "Flock canvas"),
-    EquipmentModel(id: "401", image: "img/equipments/talismans/jump.png", name: "Jump attack"),
-    EquipmentModel(id: "402", image: "img/equipments/talismans/dragon.png", name: "Dragoncrest shield"),
-    EquipmentModel(id: "403", image: "img/equipments/talismans/branch.png", name: "Sacred branch"),
+    EquipmentModel(
+        id: "400",
+        image: "img/equipments/talismans/flock.png",
+        name: "Flock canvas"),
+    EquipmentModel(
+        id: "401",
+        image: "img/equipments/talismans/jump.png",
+        name: "Jump attack"),
+    EquipmentModel(
+        id: "402",
+        image: "img/equipments/talismans/dragon.png",
+        name: "Dragoncrest shield"),
+    EquipmentModel(
+        id: "403",
+        image: "img/equipments/talismans/branch.png",
+        name: "Sacred branch"),
   ];
-
-  BuildPage({Key? key, required this.name, this.id}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    Provider.of<BuildProvider>(context).getBuild(id as String);
+    Provider.of<BuildProvider>(context).getBuild(widget.id as String);
     List<Build> currentBuild = Provider.of<BuildProvider>(context).build;
 
     return Scaffold(
         backgroundColor: Colors.black,
-        appBar: CustomAppBarBuild(buildName: name),
+        appBar: CustomAppBarBuild(buildName: widget.name),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 75, vertical: 8),
-          child: Column(
+          child: _isLoading
+              ? Center(
+                  child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: const [
+                    Image(
+                      height: 230,
+                      image: NetworkImage('img/logo.png'),
+                    ),
+                    Text('Elden rinG',
+                        style: TextStyle(color: Colors.white, fontSize: 40)),
+                    Text('LoadinG',
+                        style: TextStyle(color: Colors.white, fontSize: 30)),
+                  ],
+                ))
+              : Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -138,73 +204,73 @@ class BuildPage extends StatelessWidget {
                                 border: Border(
                                     top: BorderSide(
                                         color:
-                                            Color.fromRGBO(160, 141, 106, 1.0),
+                                        Color.fromRGBO(160, 141, 106, 1.0),
                                         width: 0.5))),
 
                             child: TabBarView(children: <Widget>[
                               Column(
                                   mainAxisAlignment:
-                                      MainAxisAlignment.center,
+                                  MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.center,
-                                 children: [
+                                  children: [
 
-                                     Container(
-                                       child:
-                                       currentBuild[0].weapon1 != 0
-                                           ? Equipment(
-                                           name: Helpers.findById(
-                                               weapons,
-                                               currentBuild[0]
-                                                   .weapon1
-                                                   .toString())
-                                               .name,
-                                           image: Helpers.findById(
-                                               weapons,
-                                               currentBuild[0]
-                                                   .weapon1
-                                                   .toString())
-                                               .image)
-                                           : Container()
-                                     ),
-                                     Container(
-                                       child:
-                                       currentBuild[0].weapon2 != 0
-                                           ?
-                                       Equipment(
-                                           name: Helpers.findById(
-                                               weapons,
-                                               currentBuild[0]
-                                                   .weapon2
-                                                   .toString())
-                                               .name,
-                                           image: Helpers.findById(
-                                               weapons,
-                                               currentBuild[0]
-                                                   .weapon2
-                                                   .toString())
-                                               .image)
-                                           : Container()
-                                     ),
-                                     Container(
-                                       child:
-                                       currentBuild[0].weapon3 != 0
-                                           ?
-                                       Equipment(
-                                           name: Helpers.findById(
-                                               weapons,
-                                               currentBuild[0]
-                                                   .weapon3
-                                                   .toString())
-                                               .name,
-                                           image: Helpers.findById(
-                                               weapons,
-                                               currentBuild[0]
-                                                   .weapon3
-                                                   .toString())
-                                               .image)
-                                           : Container()
-                                     ),
-                                   ]
+                                    Container(
+                                        child:
+                                        currentBuild[0].weapon1 != 0
+                                            ? Equipment(
+                                            name: Helpers.findById(
+                                                weapons,
+                                                currentBuild[0]
+                                                    .weapon1
+                                                    .toString())
+                                                .name,
+                                            image: Helpers.findById(
+                                                weapons,
+                                                currentBuild[0]
+                                                    .weapon1
+                                                    .toString())
+                                                .image)
+                                            : Container()
+                                    ),
+                                    Container(
+                                        child:
+                                        currentBuild[0].weapon2 != 0
+                                            ?
+                                        Equipment(
+                                            name: Helpers.findById(
+                                                weapons,
+                                                currentBuild[0]
+                                                    .weapon2
+                                                    .toString())
+                                                .name,
+                                            image: Helpers.findById(
+                                                weapons,
+                                                currentBuild[0]
+                                                    .weapon2
+                                                    .toString())
+                                                .image)
+                                            : Container()
+                                    ),
+                                    Container(
+                                        child:
+                                        currentBuild[0].weapon3 != 0
+                                            ?
+                                        Equipment(
+                                            name: Helpers.findById(
+                                                weapons,
+                                                currentBuild[0]
+                                                    .weapon3
+                                                    .toString())
+                                                .name,
+                                            image: Helpers.findById(
+                                                weapons,
+                                                currentBuild[0]
+                                                    .weapon3
+                                                    .toString())
+                                                .image)
+                                            : Container()
+                                    ),
+                                  ]
                               ),
                               Column(
                                   mainAxisAlignment:
@@ -221,7 +287,7 @@ class BuildPage extends StatelessWidget {
                                                 currentBuild[0]
                                                     .spell1
                                                     .toString())
-                                                  .name,
+                                                .name,
                                             image: Helpers.findById(
                                                 spells,
                                                 currentBuild[0]
@@ -355,9 +421,11 @@ class BuildPage extends StatelessWidget {
               ),
             ],
           ),
-        ));
+        )
+    );
   }
 }
+
 class Helpers {
   static findById(list, String id) {
     var findById = (obj) => obj.id == id;
