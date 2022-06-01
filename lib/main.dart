@@ -4,6 +4,9 @@ import 'package:elden_build/layout/layout.dart';
 import 'package:elden_build/layout/pages/create_build.dart';
 import 'package:elden_build/models/build_model.dart';
 import 'package:elden_build/models/build_provider.dart';
+import 'package:elden_build/models/weapon_provider.dart';
+import 'package:elden_build/models/spell_provider.dart';
+import 'package:elden_build/models/talisman_provider.dart';
 import 'package:elden_build/models/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:objectid/objectid.dart';
@@ -25,6 +28,9 @@ class MyApp extends StatefulWidget {
 class _MyApp extends State<MyApp> {
   late UserProvider userProvider = UserProvider();
   late BuildProvider buildProvider = BuildProvider();
+  late WeaponProvider weaponProvider = WeaponProvider();
+  late SpellProvider spellProvider = SpellProvider();
+  late TalismanProvider talismanProvider = TalismanProvider();
 
   @override
   void initState() {
@@ -43,6 +49,15 @@ class _MyApp extends State<MyApp> {
           }),
           ChangeNotifierProvider(create: (BuildContext context) {
             return buildProvider;
+          }),
+          ChangeNotifierProvider(create: (BuildContext context) {
+            return weaponProvider;
+          }),
+          ChangeNotifierProvider(create: (BuildContext context) {
+            return spellProvider;
+          }),
+          ChangeNotifierProvider(create: (BuildContext context) {
+            return talismanProvider;
           })
         ],
         child: MaterialApp(

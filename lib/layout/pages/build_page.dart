@@ -1,9 +1,16 @@
 import 'package:elden_build/models/build_model.dart';
 import 'package:elden_build/models/build_provider.dart';
+import 'package:elden_build/models/spell_provider.dart';
+import 'package:elden_build/models/talisman_provider.dart';
+import 'package:elden_build/models/weapon_model.dart';
+import 'package:elden_build/models/weapon_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:elden_build/layout/layout.dart';
 import '../../model/EquipmentModel.dart';
 import 'package:provider/provider.dart';
+
+import '../../models/spell_model.dart';
+import '../../models/talisman_model.dart';
 
 class BuildPage extends StatefulWidget {
   static const String routeName = '/build-page';
@@ -17,16 +24,21 @@ class BuildPage extends StatefulWidget {
 
 class _BuildPage extends State<BuildPage> {
   late bool _isLoading;
-
+  List<Weapon> weapons_provider = [];
+  List<Spell> spells_provider = [];
+  List<Talisman> talismans_provider = [];
   @override
   void initState() {
     _isLoading = true;
     Future.delayed(
-        const Duration(seconds: 1),
+        const Duration(seconds: 3),
         () => {
               setState(() => {_isLoading = false})
             });
     super.initState();
+    Provider.of<WeaponProvider>(context, listen: false).fetchData();
+    Provider.of<SpellProvider>(context, listen: false).fetchData();
+    Provider.of<TalismanProvider>(context, listen: false).fetchData();
   }
 
   final List<EquipmentModel> weapons = [
@@ -84,12 +96,14 @@ class _BuildPage extends State<BuildPage> {
         image: "img/equipments/talismans/branch.png",
         name: "Sacred branch"),
   ];
-
   @override
   Widget build(BuildContext context) {
-    Provider.of<BuildProvider>(context).getBuild(widget.id as String);
-    List<Build> currentBuild = Provider.of<BuildProvider>(context).build;
+    Provider.of<BuildProvider>(context, listen: false).getBuild(widget.id as String);
+    List<Build> currentBuild = Provider.of<BuildProvider>(context, listen: false).build;
 
+    weapons_provider = Provider.of<WeaponProvider>(context, listen: false).weapons;
+    spells_provider = Provider.of<SpellProvider>(context, listen: false).spells;
+    talismans_provider = Provider.of<TalismanProvider>(context, listen: false).talismans;
     return Scaffold(
         backgroundColor: Colors.black,
         appBar: CustomAppBarBuild(buildName: widget.name),
@@ -213,22 +227,20 @@ class _BuildPage extends State<BuildPage> {
                                   MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-
+                                    // getWeaponWidget(weapons_provider),
                                     Container(
                                         child:
                                         currentBuild[0].weapon1 != 0
                                             ? Equipment(
-                                            name: Helpers.findById(
-                                                weapons,
+                                            name: Helpers.findByIdInt(
+                                                weapons_provider,
                                                 currentBuild[0]
-                                                    .weapon1
-                                                    .toString())
+                                                    .weapon1)
                                                 .name,
-                                            image: Helpers.findById(
-                                                weapons,
+                                            image: Helpers.findByIdInt(
+                                                weapons_provider,
                                                 currentBuild[0]
-                                                    .weapon1
-                                                    .toString())
+                                                    .weapon1)
                                                 .image)
                                             : Container()
                                     ),
@@ -237,17 +249,15 @@ class _BuildPage extends State<BuildPage> {
                                         currentBuild[0].weapon2 != 0
                                             ?
                                         Equipment(
-                                            name: Helpers.findById(
-                                                weapons,
+                                            name: Helpers.findByIdInt(
+                                                weapons_provider,
                                                 currentBuild[0]
-                                                    .weapon2
-                                                    .toString())
+                                                    .weapon2)
                                                 .name,
-                                            image: Helpers.findById(
-                                                weapons,
+                                            image: Helpers.findByIdInt(
+                                                weapons_provider,
                                                 currentBuild[0]
-                                                    .weapon2
-                                                    .toString())
+                                                    .weapon2)
                                                 .image)
                                             : Container()
                                     ),
@@ -256,17 +266,14 @@ class _BuildPage extends State<BuildPage> {
                                         currentBuild[0].weapon3 != 0
                                             ?
                                         Equipment(
-                                            name: Helpers.findById(
-                                                weapons,
-                                                currentBuild[0]
-                                                    .weapon3
-                                                    .toString())
+                                            name: Helpers.findByIdInt(
+                                                weapons_provider,
+                                                currentBuild[0].weapon3)
                                                 .name,
-                                            image: Helpers.findById(
-                                                weapons,
+                                            image: Helpers.findByIdInt(
+                                                weapons_provider,
                                                 currentBuild[0]
-                                                    .weapon3
-                                                    .toString())
+                                                    .weapon3)
                                                 .image)
                                             : Container()
                                     ),
@@ -282,17 +289,17 @@ class _BuildPage extends State<BuildPage> {
                                         child:
                                         currentBuild[0].spell1 != 0
                                             ? Equipment(
-                                            name: Helpers.findById(
-                                                spells,
+                                            name: Helpers.findSpellByIdInt(
+                                                spells_provider,
                                                 currentBuild[0]
                                                     .spell1
-                                                    .toString())
+                                                    )
                                                 .name,
-                                            image: Helpers.findById(
-                                                spells,
+                                            image: Helpers.findSpellByIdInt(
+                                                spells_provider,
                                                 currentBuild[0]
                                                     .spell1
-                                                    .toString())
+                                                    )
                                                 .image)
                                             : Container()
                                     ),
@@ -301,17 +308,17 @@ class _BuildPage extends State<BuildPage> {
                                         currentBuild[0].spell2 != 0
                                             ?
                                         Equipment(
-                                            name: Helpers.findById(
-                                                spells,
+                                            name: Helpers.findSpellByIdInt(
+                                                spells_provider,
                                                 currentBuild[0]
                                                     .spell2
-                                                    .toString())
+                                                    )
                                                 .name,
-                                            image: Helpers.findById(
-                                                spells,
+                                            image: Helpers.findSpellByIdInt(
+                                                spells_provider,
                                                 currentBuild[0]
                                                     .spell2
-                                                    .toString())
+                                                    )
                                                 .image)
                                             : Container()
                                     ),
@@ -320,17 +327,17 @@ class _BuildPage extends State<BuildPage> {
                                         currentBuild[0].spell3 != 0
                                             ?
                                         Equipment(
-                                            name: Helpers.findById(
-                                                spells,
+                                            name: Helpers.findSpellByIdInt(
+                                                spells_provider,
                                                 currentBuild[0]
                                                     .spell3
-                                                    .toString())
+                                                    )
                                                 .name,
-                                            image: Helpers.findById(
-                                                spells,
+                                            image: Helpers.findSpellByIdInt(
+                                                spells_provider,
                                                 currentBuild[0]
                                                     .spell3
-                                                    .toString())
+                                                    )
                                                 .image)
                                             : Container()
                                     ),
@@ -349,14 +356,14 @@ class _BuildPage extends State<BuildPage> {
                                             name: Helpers.findById(
                                                 talismans,
                                                 currentBuild[0]
-                                                    .talisman1
-                                                    .toString())
+                                                    .talisman1.toString()
+                                                    )
                                                 .name,
                                             image: Helpers.findById(
                                                 talismans,
                                                 currentBuild[0]
-                                                    .talisman1
-                                                    .toString())
+                                                    .talisman1.toString()
+                                                    )
                                                 .image)
                                             : Container()
                                     ),
@@ -368,14 +375,14 @@ class _BuildPage extends State<BuildPage> {
                                             name: Helpers.findById(
                                                 talismans,
                                                 currentBuild[0]
-                                                    .talisman2
-                                                    .toString())
+                                                    .talisman2.toString()
+                                                    )
                                                 .name,
                                             image: Helpers.findById(
                                                 talismans,
                                                 currentBuild[0]
-                                                    .talisman2
-                                                    .toString())
+                                                    .talisman2.toString()
+                                                    )
                                                 .image)
                                             : Container()
                                     ),
@@ -387,14 +394,14 @@ class _BuildPage extends State<BuildPage> {
                                             name: Helpers.findById(
                                                 talismans,
                                                 currentBuild[0]
-                                                    .talisman3
-                                                    .toString())
+                                                    .talisman3.toString()
+                                                    )
                                                 .name,
                                             image: Helpers.findById(
                                                 talismans,
                                                 currentBuild[0]
-                                                    .talisman3
-                                                    .toString())
+                                                    .talisman3.toString()
+                                                    )
                                                 .image)
                                             : Container()
                                     ),
@@ -426,10 +433,27 @@ class _BuildPage extends State<BuildPage> {
   }
 }
 
+//Functions to get the equipment data from database with the id contained in the build
 class Helpers {
   static findById(list, String id) {
+
     var findById = (obj) => obj.id == id;
     var result = list.where(findById);
+    return result.length > 0 ? result.first : null;
+  }
+  static findByIdInt(list, int id) {
+
+  var result = list.where((objet) => objet.weapon_id == id);
+    return result.length > 0 ? result.first : null;
+  }
+  static findSpellByIdInt(list, int id) {
+
+  var result = list.where((objet) => objet.spell_id == id);
+    return result.length > 0 ? result.first : null;
+  }
+  static findTalismanByIdInt(list, int id) {
+
+  var result = list.where((objet) => objet.talisman_id == id);
     return result.length > 0 ? result.first : null;
   }
 }
