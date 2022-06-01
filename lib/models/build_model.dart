@@ -1,4 +1,5 @@
 class Build {
+  String? id;
   String name;
   String image;
   String description;
@@ -23,7 +24,8 @@ class Build {
   int talisman3;
 
   Build(
-      {required this.name,
+      {this.id,
+      required this.name,
       required this.image,
       required this.description,
       required this.mainStat1,
@@ -47,7 +49,8 @@ class Build {
       required this.talisman3});
 
   Build.fromJson(Map<String, dynamic> json)
-      : name = json['name'],
+      : id = json['_id'],
+        name = json['name'],
         image = json['image'],
         description = json['description'],
         mainStat1 = json['mainStat1'],
@@ -72,6 +75,7 @@ class Build {
 
   Map<String, dynamic> toJson() {
     return {
+      '_id': id,
       'name': name,
       'image': image,
       'description': description,

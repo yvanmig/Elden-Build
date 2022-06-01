@@ -49,7 +49,7 @@ class UserProvider with ChangeNotifier {
         headers: {'Content-type': 'application/json'},
       );
       Map<String, dynamic> temp = json.decode(response.body);
-
+      print(temp);
       if (response.statusCode == 200) {
         MyApp.currentUser = User.fromJson(temp['user']);
         return ("200");
