@@ -1,6 +1,6 @@
 # elden_build
 
-A Flutter project.
+Application for Elden Ring to view and share builds.
 
 ## Launch database connection
 
