@@ -9,6 +9,8 @@ const Build = require("./models/build.model");
 const e = require("express");
 const jwt = require('jsonwebtoken');
 
+const ObjectId = require('mongodb').ObjectId;
+
 app.use(cors());
 mongoose.set("debug", true);
 mongoose
@@ -23,6 +25,12 @@ mongoose
 
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+  next();
+});
 
 // Get All Users
 app.get("/api/users", async (req, res) => {
@@ -42,6 +50,15 @@ app.get("/api/builds", async (req, res) => {
   } catch (e) {
     res.status(500).json(e);
   }
+});
+
+// Get one build
+app.get("/api/getbuild/:id", async (req, res) => {
+  const id = new ObjectId(req.params.id);
+   Build.findOne({_id: id}).then(
+    (builds) => {
+      res.status(200).json({builds})}
+  ).catch(error => res.status(500).json({error: error}));
 });
 
 //Regiter new user

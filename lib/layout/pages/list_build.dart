@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 //import 'package:google_fonts/google_fonts.dart';
 import 'package:elden_build/layout/layout.dart';
+import 'package:objectid/objectid.dart';
 import 'package:provider/provider.dart';
 
 import '../partials/drawer_menu.dart';
@@ -26,14 +27,13 @@ class ListBuild extends StatelessWidget {
               itemCount: builds.length,
               itemBuilder: (constext, index) {
                 final currentBuild = builds[index];
-
                 return BuildCard(
                     buildImage: currentBuild.image,
                     buildStats:
                         currentBuild.mainStat1 + ' / ' + currentBuild.mainStat2,
                     buildTitle: currentBuild.name,
                     buildDescription: currentBuild.description,
-                    buildId: index);
+                    buildId: currentBuild.id);
               })),
     );
   }

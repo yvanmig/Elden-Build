@@ -1,17 +1,22 @@
 import 'package:elden_build/layout/partials/build/equipment.dart';
 import 'package:elden_build/layout/partials/build/stat.dart';
+import 'package:elden_build/main.dart';
+import 'package:elden_build/models/build_model.dart';
+import 'package:elden_build/models/build_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 //import 'package:google_fonts/google_fonts.dart';
 import 'package:elden_build/layout/layout.dart';
 import '../../model/EquipmentModel.dart';
+import 'package:objectid/objectid.dart';
+import 'package:provider/provider.dart';
 
 class BuildPage extends StatelessWidget {
   static const String routeName = '/build-page';
   final String buildDescription =
       "A build using faith and dexterity to annihilate waves of ennemies. May stagger bosses if combined with a high level talisman";
   final String name;
-  final int id;
+  final String? id;
 
   final List<EquipmentModel> weapons = [
     EquipmentModel(id: "1", image: "img/equipments/weapons/crystal_staff.png", name: "Crystal staff"),
@@ -33,46 +38,78 @@ class BuildPage extends StatelessWidget {
     EquipmentModel(id: "404", image: "img/equipments/talismans/branch.png", name: "Sacred branch"),
   ];
 
-  final List<Stat> stats = [
-    const Stat(value: 37, name: "INT"),
-    const Stat(value: 37, name: "INT"),
-    const Stat(value: 37, name: "INT"),
-    const Stat(value: 37, name: "INT"),
-    const Stat(value: 37, name: "INT"),
-    const Stat(value: 37, name: "INT"),
-    const Stat(value: 37, name: "INT"),
-  ];
-
-  BuildPage({Key? key, required this.name, required this.id}) : super(key: key);
+  BuildPage({Key? key, required this.name, this.id}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    Provider.of<BuildProvider>(context).getBuild(id as String);
+    List<Build> currentBuild = Provider.of<BuildProvider>(context).build;
+    // print(currentBuild);
+
     return Scaffold(
-      backgroundColor: Colors.black,
-      appBar: CustomAppBarBuild(buildName: name),
-      body:
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 75, vertical: 8),
-            child:
-            Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  height: 175,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: stats.map((stat) {
-                          return SizedBox(
-                            width: 80,
-                            child: Stat(value: stat.value, name: stat.name),
-                          );
-                        }).toList()),
-                    // const Padding(padding: const EdgeInsets.only(bottom: 20)),
+        backgroundColor: Colors.black,
+        appBar: CustomAppBarBuild(buildName: name),
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 75, vertical: 8),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                height: 175,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Container(
+                      width: 80,
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            SizedBox(
+                                width: 80,
+                                child: Stat(
+                                    value: currentBuild[0].vigor, name: "VIG")),
+                            SizedBox(
+                              width: 80,
+                              child: Stat(
+                                  value: currentBuild[0].mind, name: "MIND"),
+                            ),
+                            SizedBox(
+                              width: 80,
+                              child: Stat(
+                                  value: currentBuild[0].endurence,
+                                  name: "END"),
+                            ),
+                            SizedBox(
+                              width: 80,
+                              child: Stat(
+                                  value: currentBuild[0].strength, name: "STR"),
+                            ),
+                            SizedBox(
+                              width: 80,
+                              child: Stat(
+                                  value: currentBuild[0].dexterity,
+                                  name: "DEX"),
+                            ),
+                            SizedBox(
+                              width: 80,
+                              child: Stat(
+                                  value: currentBuild[0].intelligence,
+                                  name: "INT"),
+                            ),
+                            SizedBox(
+                              width: 80,
+                              child: Stat(
+                                  value: currentBuild[0].arcane, name: "ARC"),
+                            ),
+                            SizedBox(
+                              width: 80,
+                              child: Stat(
+                                  value: currentBuild[0].faith, name: "FAITH"),
+                            ),
+                          ]),
+                    ),
                     Align(
                       widthFactor: 0.7,
                       alignment: Alignment.center,
@@ -88,7 +125,8 @@ class BuildPage extends StatelessWidget {
                     Expanded(
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 75),
-                        child: Text(buildDescription, style: const TextStyle(color: Colors.white)),
+                        child: Text(currentBuild[0].description,
+                            style: TextStyle(color: Colors.white)),
                       ),
                     )
                   ],
